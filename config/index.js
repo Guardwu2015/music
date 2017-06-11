@@ -29,18 +29,11 @@ module.exports = {
     assetsPublicPath: '/',
     //https://api.douban.com/v2/movie/top250    /v2/movie/top250
     proxyTable: {
-      '/v2':{
-        target:'https://api.douban.com',
+      '/213-4':{
+        target:'http://route.showapi.com',
         changeOrigin:true,
         pathRewrite:{
-          '^/v2':'/v2'
-        }
-      },
-      '/search':{
-      	target:'https://s.music.163.com/',
-        changeOrigin:true,
-        pathRewrite:{
-          '^/search':'/search'
+          '^/213-4':'/213-4'
         }
       }
     },
