@@ -4,48 +4,9 @@
 			<input type="text" class="search-input" placeholder="搜索 歌曲/专辑/歌手" />
 		</div>
   	<div id="app-body">
-  		<div>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  			<p>123</p>
-  		</div>
+  		<ul class="rang-king-list">
+  			<li v-for="item in rangKing" key="index">{{ item[1] }}</li>
+  		</ul>
   	</div>
   	<div id="play-bar">
   		<dl class="play-bar-container">
@@ -61,8 +22,16 @@
 
 <script>
 import BScroll from 'better-scroll'
+
+const RANGKING = [["26","热歌"],["4","流行榜"],["3","欧美"],["5","内地"],["6","港台"],["16","韩国"],["17","日本"],["27","新歌"],["28","网络歌曲"],["32","音乐人"],["26","K歌金曲"]]
+
 export default {
   name: 'app',
+  data(){
+  	return {
+  		rangKing:RANGKING
+  	}
+  },
   created(){
   	this.$http.get('/213-4?showapi_appid=39796&showapi_sign=3F28938D9E07B44E63B1AB0C166C6AF5&topid=5').then(response => {
 		  		console.log(response.data)

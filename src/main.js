@@ -4,8 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-//import BScroll from 'better-scroll'
-import './assets/js/rem.js'
+import '@/assets/js/rem'
 
 Vue.prototype.$http = axios
 
