@@ -5,7 +5,7 @@
 		</div>
   	<div id="app-body">
   		<ul class="rang-king-list">
-  			<li v-for="item in rangKing" key="index">{{ item[1] }}</li>
+  			<li v-for="item in rangKing" v-tap="{methods:getSong, index : item[0]}">{{ item[1] }}</li>
   		</ul>
   	</div>
   	<div id="play-bar">
@@ -32,19 +32,23 @@ export default {
   		rangKing:RANGKING
   	}
   },
-  created(){
-  	this.$http.get('/213-4?showapi_appid=39796&showapi_sign=3F28938D9E07B44E63B1AB0C166C6AF5&topid=5').then(response => {
-		  		console.log(response.data)
-				}, response => {
-
-				})
-  },
   mounted() {
 	  this.$nextTick(() => {
 	    this.scroll = new BScroll(document.getElementById("app-body"), {})
 	  })
-  }
-
+  },
+  created(){
+		this.$myFun()
+  },
+	methods:{
+		getSong: function (params) {
+//			this.$http.get(getApi+params.index).then(response => {
+//		  		console.log(response.data)
+//			}, response => {
+//		
+//			})
+    },
+	}
 }
 </script>
 
