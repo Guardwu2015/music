@@ -67,6 +67,49 @@ input:focus{ outline: none;}
 
 body{ max-width: 640px; min-width: 320px; margin: 0 auto;}
 
+
+//顶部模块
+.top-bar{
+    position: absolute; top: 0; left: 0; width: 100%; transition: top .3s .2s; 
+    &.active{top:-80/@r;}
+    .top-wrap{
+        background: #42B983; color: #FFF; height: 180/@r; padding-top: 20/@r; position: relative; z-index: 6;
+        .top-nav{
+            text-align: center; font-size: 28/@r;
+            span{ opacity: 0.6; margin: 0 20/@r;}
+            span.active{ font-size: 36/@r; opacity: 1;}
+        }
+        .search-wrap{
+            position: absolute; width: 100%; padding: 0 15/@r; left:0; bottom: 15/@r; transition: padding-right .5s; overflow: hidden;
+            &.active{ padding-right: 100/@r;}
+            input{ width: 100%; background: #2caa6d; height: 70/@r; border-radius: 10/@r; line-height: 70/@r; color: #FFF; text-indent: 1em;
+            }
+            label{ position: absolute; transform: translate(-50%,-50%); top: 50%; left: 50%; font-size: 28/@r; line-height: 70/@r; margin-top: 2/@r;}
+            input::-webkit-input-placeholder{
+                color: #000;opacity:1;
+            }
+            span{ position: absolute; right: -80/@r; top: 0; font-size: 26/@r; display: block; width: 80/@r; line-height: 80/@r; transition: right .3s .2s; 
+                &.active{
+                    right: 0;
+                }
+            }
+        }
+    }
+    .search-mark{ position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5;}
+}
+
+.fade-enter-active{
+ transition: opacity .3s
+}
+.fade-leave-active{
+  transition: opacity .3s .3s
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0
+}
+
+
+
 //底部播放栏
 #play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0; padding: 0 35/@r; background: #eee; }
 .play-bar-container{ padding: 10/@r 0; display: flex; align-items: center;
@@ -76,23 +119,18 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto;}
     .play-bar-text{ font-size: 36/@r;}
 }
 
-//顶部播放栏
-#search-bar{ padding: 20/@r 25/@r; position: absolute; top: 0; left: 0; width: 100%;
-    .search-input{ width: 100%; background: #eee; height: 90/@r; border-radius: 50/@r; text-indent: 80/@r; line-height: 90/@r;}
 
+//首页列表内容区域
+#app-body{ position: absolute; top: 180/@r; bottom: 120/@r; left: 0; right: 0; overflow: hidden;}
+
+.title{ text-align: center;
+    h6{ height: 100/@r; line-height: 100/@r;}
 }
 
-//列表内容区域
-#app-body{ position: absolute; top: 130/@r; bottom: 120/@r; left: 0; right: 0; overflow: hidden;}
-.rang-king-list{
-    li{ width: 90%; margin: 0 auto; text-align: center; height: 120/@r;}
-}
-
-
+//轮播图
 #banner{
-    width: 100%;
-    ul{
-        list-style: none;
-        li{ width: 100%; height: 200/@r; background: #FF0; list-style: none;}
+    .swiper-slide { color: #fff; font-size: 36px; text-align: center; background: #F00; color: #FFF;
+        img{ display: block;}
     }
 }
+

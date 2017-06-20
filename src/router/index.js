@@ -1,16 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import music from '@/components/music'
+import home from '@/components/home'
+import list from '@/components/mainList'
 
 
 Vue.use(Router)
 
 export default new Router({
+	mode:'history',
   routes: [
     {
       path: '/',
-      name: 'music',
-      component: music
+      name: 'home',
+      component: home
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: list
     }
   ]
 })

@@ -8,8 +8,11 @@ import vueTap from 'v-tap'
 import '@/assets/js/rem'
 import api from '@/assets/js/api.js'
 
+import '../static/swiper/swiper.min.css'
+
 Vue.use(vueTap);
 Vue.use(api);
+
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
