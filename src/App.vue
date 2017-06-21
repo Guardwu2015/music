@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-		<top></top>
-		<router-view></router-view>
+		<v-header></v-header>
+		<v-nav v-on:setDir="routeDir"></v-nav>
+		<transition :name="thisDir">
+			<router-view class="app-body"></router-view>
+		</transition>
   	<div id="play-bar">
   		<dl class="play-bar-container">
   			<dt class="play-bar-image">
@@ -15,14 +18,25 @@
 </template>
 
 <script>
-import top from '@/components/header'
+import vHeader from '@/components/header'
+import vNav from '@/components/nav'
 
 export default {
   name: 'app',
+  data(){
+  	return {
+  		thisDir:'left'
+  	}
+  },
 	components:{
-		top
+		vHeader,
+		vNav,
+	},
+	methods:{
+		routeDir(data){
+			this.thisDir = data
+		}
 	}
-	
 }
 </script>
 

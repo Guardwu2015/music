@@ -2,8 +2,7 @@
 	<div class="top-bar" :class="{ active: isfocus }">
 		<div class="top-wrap">
 			<div class="top-nav">
-				<router-link to="/" tag="span">音乐馆</router-link>
-				<router-link to="/list" tag="span">巅峰榜</router-link>
+				<span>音乐馆</span>
 			</div>
 			<div class="search-wrap" :class="{ active: isfocus }">
 				<label for="search-input" v-show="!isfocus">搜索</label>
@@ -21,7 +20,7 @@
 	export default{
 		data(){
 			return {
-				isfocus:false
+				isfocus:false,
 			}
 		},
 		methods:{
@@ -35,6 +34,3 @@
 		}
 	}
 </script>
-
-<style>
-</style>
