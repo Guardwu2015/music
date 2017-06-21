@@ -1,6 +1,6 @@
 <template>
 	<div ref="hotBody">
-		<div class="loading" v-if="loading">Loading...</div>
+		<loading class="loading" v-if="loading"></loading>
 		<div class="rang-king-list">
 			<banner></banner>
 			<div class="title">
@@ -22,8 +22,9 @@
 </template>
 
 <script>
-	import banner from '@/components/banner'
 	import BScroll from 'better-scroll'
+	import banner from '@/components/banner'
+	import loading from '@/components/loading'
 	
 	export default {
 		data() {
@@ -54,7 +55,8 @@
 			},
 		},
 		components:{
-			banner
+			banner,
+			loading
 		}
 	}
 </script>
