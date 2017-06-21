@@ -24,7 +24,6 @@
 			path: "/inland"
 		},
 		{
-			id: "6",
 			title: "港台",
 			path: "/hktw"
 		},

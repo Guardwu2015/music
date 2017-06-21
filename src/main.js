@@ -13,7 +13,6 @@ import '../static/swiper/swiper.min.css'
 Vue.use(vueTap);
 Vue.use(api);
 
-
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
