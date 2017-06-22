@@ -14,12 +14,14 @@
   		</dl>
   		<div class="play-bar-button"></div>
   	</div>
+  	<music></music>
   </div>
 </template>
 
 <script>
 import vHeader from '@/components/header'
 import vNav from '@/components/nav'
+import music from '@/components/musicPlay'
 
 export default {
   name: 'app',
@@ -31,6 +33,7 @@ export default {
 	components:{
 		vHeader,
 		vNav,
+		music
 	},
 	methods:{
 		routeDir(data){
