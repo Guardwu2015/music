@@ -4,13 +4,18 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-	// 定义状态
 	state: {
-		author: -1
+		playList: [],
+		playID: null,
 	},
 	mutations: {
-		newAuthor(state, msg) {
-			state.author = msg
+		newPlay(state,obj) {
+			state.playList = obj.list;
+			if(obj.id){
+				state.playID = obj.id;
+			}else{
+				state.playID = 0;
+			}
 		}
 	}
 

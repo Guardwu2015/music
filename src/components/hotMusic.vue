@@ -4,7 +4,7 @@
 		<div class="rang-king-list">
 			<banner></banner>
 			<div class="title">
-				<h6>{{author}}</h6>
+				<h6>热门歌曲</h6>
 			</div>
 			<ul class="songList">
 				<li v-for="(item,index) in DataList" key="index" v-tap="{methods:getSong, index:index}">
@@ -39,11 +39,6 @@
 		watch: {
 			'$route': 'fetchData'
 		},
-		computed: {
-			author() {
-				return this.$store.state.author
-			}
-		},
 		methods: {
 			fetchData() {
 				this.loading = true;
@@ -59,9 +54,10 @@
 				})
 			},
 			getSong(params) {
-//				console.log(params)
-//				this.$store.state.author = 13131;
-				this.$store.commit("newAuthor",params.index)
+				let obj = {}
+				obj.list = this.DataList;
+				obj.id = params.index;
+				this.$store.commit("newPlay",obj)
 			}
 		},
 		components: {

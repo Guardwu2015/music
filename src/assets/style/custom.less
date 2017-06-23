@@ -78,14 +78,17 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
         .top-nav{
             text-align: center; font-size: 28/@r;
             span{ opacity:1;  font-size: 36/@r;}
-//          span.active{ font-size: 36/@r; opacity: 1;}
         }
         .search-wrap{
             position: absolute; width: 100%; padding: 0 15/@r; left:0; bottom: 15/@r; transition: padding-right .5s; overflow: hidden;
             &.active{ padding-right: 100/@r;}
             input{ width: 100%; background: #2caa6d; height: 70/@r; border-radius: 10/@r; line-height: 70/@r; color: #FFF; text-indent: 1em;
             }
-            label{ position: absolute; transform: translate(-50%,-50%); top: 50%; left: 50%; font-size: 28/@r; line-height: 70/@r; margin-top: 2/@r; opacity: 0.5;}
+            label{ position: absolute; transform: translate(-50%,-50%); top: 50%; left: 50%; font-size: 28/@r; line-height: 70/@r; margin-top: 2/@r; opacity: 0.5; display:flex; align-items:center; justify-content: center; 
+                &:before{
+                    content: ""; background: url(../images/search.png) no-repeat; background-size: 35/@r 35/@r; width: 35/@r; height: 35/@r; display: block; margin-right: 10/@r;
+                }
+            }
             input::-webkit-input-placeholder{
                 color: #000;opacity:1;
             }
@@ -120,14 +123,14 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
 
 
 //底部播放栏
-#play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0; padding: 0 35/@r; background: #eee; }
-.play-bar-container{ padding: 10/@r 0; display: flex; align-items: center;
+#play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;  background: #eee; display: flex; justify-content: space-around; }
+.play-bar-container{ padding: 10/@r 35/@r; display: flex; align-items: center; flex: 1;
     .play-bar-image{ width: 100/@r; height: 100/@r; padding-right: 20/@r; display: flex; align-items: center;
         img{ display: block; width: 100%; border-radius: 100%; background: #FFF;}
     }
     .play-bar-text{ font-size: 36/@r;}
 }
-
+.play-bar-button{ width: 250/@r; background: #FF0; display: flex; justify-content: space-between;}
 
 
 //首页列表内容区域

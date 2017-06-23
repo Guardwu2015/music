@@ -6,14 +6,12 @@
 			<router-view class="app-body"></router-view>
 		</transition>
 		<play></play>
-  	<music></music>
   </div>
 </template>
 
 <script>
 import vHeader from '@/components/header'
 import vNav from '@/components/nav'
-import music from '@/components/musicPlay'
 import play from '@/components/playBar'
 
 export default {
@@ -26,7 +24,6 @@ export default {
 	components:{
 		vHeader,
 		vNav,
-		music,
 		play
 	},
 	methods:{
