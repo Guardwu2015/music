@@ -5,15 +5,7 @@
 		<transition :name="thisDir">
 			<router-view class="app-body"></router-view>
 		</transition>
-  	<div id="play-bar">
-  		<dl class="play-bar-container">
-  			<dt class="play-bar-image">
-  				<img src="./assets/images/logo.png"/>
-  			</dt>
-  			<dd class="play-bar-text">vue muisc</dd>
-  		</dl>
-  		<div class="play-bar-button"></div>
-  	</div>
+		<play></play>
   	<music></music>
   </div>
 </template>
@@ -22,6 +14,7 @@
 import vHeader from '@/components/header'
 import vNav from '@/components/nav'
 import music from '@/components/musicPlay'
+import play from '@/components/playBar'
 
 export default {
   name: 'app',
@@ -33,7 +26,8 @@ export default {
 	components:{
 		vHeader,
 		vNav,
-		music
+		music,
+		play
 	},
 	methods:{
 		routeDir(data){
