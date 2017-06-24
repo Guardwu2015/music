@@ -1,10 +1,7 @@
 <template>
 	<div ref="hotBody">
-		<div class="loading" v-if="loading">Loading...</div>
+		<loading class="loading" v-if="loading"></loading>
 		<div class="rang-king-list">
-			<div class="title">
-				<h6>热歌推荐</h6>
-			</div>
 			<ul class="songList">
 			<li v-for="(item,index) in DataList" key="index">
 				<dl>
@@ -21,6 +18,7 @@
 </template>
 
 <script>
+	import loading from '@/components/loading'
 	import BScroll from 'better-scroll'
 	
 	export default {
@@ -51,5 +49,8 @@
 				})
 			},
 		},
+		components:{
+			loading
+		}
 	}
 </script>
