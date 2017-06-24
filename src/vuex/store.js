@@ -19,7 +19,7 @@ const store = new Vuex.Store({
 				state.playID = 0;
 			}
 		},
-		ksPlay(state){
+		isPlay(state){
 			state.isplay = !state.isplay;
 		},
 		nextMusic(state){
@@ -27,7 +27,13 @@ const store = new Vuex.Store({
 				state.playID = 0
 			}else{
 				state.playID++
-				console.log(state.playID)
+			}
+		},
+		prevMusic(state){
+			if(state.playID < 0){
+				state.playID = state.playList.length
+			}else{
+				state.playID--
 			}
 		}
 	}

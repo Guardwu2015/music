@@ -123,7 +123,12 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
 
 
 //底部播放栏
-#play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;  background: #eee; display: flex; justify-content: space-around; }
+#play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;  background: #eee; display: flex; justify-content: space-around;
+    transition: transform .7s;
+    &.active{
+        transform: translateY(100%);
+    }
+}
 .play-bar-container{ padding: 10/@r 35/@r; display: flex; align-items: center; flex: 1;
     .play-bar-image{ width: 100/@r; height: 100/@r; padding-right: 20/@r; display: flex; align-items: center;
         img{ display: block; width: 100%; border-radius: 100%; background: #FFF;}
@@ -135,6 +140,33 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
         img{ display: block; width: 100%;}
     }
 }
+.play-wrap{ position: fixed; width: 100%; background: #F00; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
+    &.active{
+        opacity: 1;
+        transform: translateY(-100%);
+    }
+    .bg-img{
+        position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: -1; background: #000;
+        img{
+            width: 100%; filter: blur(10/@r); transform: scale(1.35); opacity: 0.7;
+        }
+    }
+    .play-body{
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+        .play-list-btn{ position: absolute; bottom: 0; left: 0; right: 0; height: 150/@r; background: #42B983;}
+        .play-handle{
+            position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; background: #F00; align-items: center; justify-content: center; display: flex;
+            .play,.pause{ width: 150/@r; height: 150/@r; border-radius: 100%; border: 2px solid #FFF; display: flex; align-items: center; justify-content: center; margin: 0 40/@r; }
+            .next,.prev{ width: 100/@r; height: 100/@r; border: 1px solid #FFF; border-radius: 100%; display: flex; align-items: center; justify-content: center;}
+        }
+        .songName{ color: #FFF; text-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute; top: 600/@r; font-size: 80/@r; left: 30/@r;}
+        .singername{ color: #FFF; text-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute;  top: 700/@r; left: 30/@r;}
+        .cover{ width: 400/@r; height: 400/@r; padding: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute;  top: 170/@r; left: 30/@r; background: #FFF;
+            img{ display: block; width: 100%;}
+        }
+    }
+}
+
 
 
 //首页列表内容区域
