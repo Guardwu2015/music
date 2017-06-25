@@ -63,6 +63,64 @@ input:focus{ outline: none;}
     }
 }
 
+//字体图标
+@font-face {
+  font-family: 'sell-icon';
+  src:  url('../fonts/sell-icon.eot?1c89tq');
+  src:  url('../fonts/sell-icon.eot?1c89tq#iefix') format('embedded-opentype'),
+    url('../fonts/sell-icon.ttf?1c89tq') format('truetype'),
+    url('../fonts/sell-icon.woff?1c89tq') format('woff'),
+    url('../fonts/sell-icon.svg?1c89tq#sell-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'sell-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-down:before {
+  content: "\e900";
+}
+.icon-left:before {
+  content: "\e901";
+}
+.icon-list:before {
+  content: "\e902";
+}
+.icon-prev:before {
+  content: "\e903";
+}
+.icon-play:before {
+  content: "\e904";
+}
+.icon-pause:before {
+  content: "\e905";
+}
+.icon-next:before {
+  content: "\e906";
+}
+.icon-serch:before {
+  content: "\e907";
+  color: #666;
+}
+
+//封装背景
+.lineBG(@val){
+    background: linear-gradient(@val);
+}
+
 @r:50rem; 
 
 body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
@@ -140,29 +198,37 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
         img{ display: block; width: 100%;}
     }
 }
-.play-wrap{ position: fixed; width: 100%; background: #F00; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
+.play-wrap{ position: fixed; width: 100%; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
     &.active{
         opacity: 1;
         transform: translateY(-100%);
     }
-    .bg-img{
-        position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: -1; background: #000;
-        img{
-            width: 100%; filter: blur(10/@r); transform: scale(1.35); opacity: 0.7;
-        }
-    }
     .play-body{
-        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-        .play-list-btn{ position: absolute; bottom: 0; left: 0; right: 0; height: 150/@r; background: #42B983;}
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #FFF;
         .play-handle{
-            position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; background: #F00; align-items: center; justify-content: center; display: flex;
-            .play,.pause{ width: 150/@r; height: 150/@r; border-radius: 100%; border: 2px solid #FFF; display: flex; align-items: center; justify-content: center; margin: 0 40/@r; }
-            .next,.prev{ width: 100/@r; height: 100/@r; border: 1px solid #FFF; border-radius: 100%; display: flex; align-items: center; justify-content: center;}
+            position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; align-items: center; justify-content: center; display: flex;
+            .play,.pause{
+                width: 130/@r; height: 130/@r; border-radius: 100%; border: 2px solid #ff1f5b; display: flex; align-items: center; justify-content: center; margin: 0 40/@r; color: #FFF;
+                @val:0deg,#fc3a6e,#ff5390;
+                .lineBG(@val);
+                i{ margin-left: 5/@r;}
+            }
+            .next,.prev{
+                width: 100/@r; height: 100/@r; border: 1px solid #FFF; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
+            }
+            .progress-wrap{
+                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center;
+                .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
+                .progress-bar{ background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px;}
+            }
         }
-        .songName{ color: #FFF; text-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute; top: 600/@r; font-size: 80/@r; left: 30/@r;}
-        .singername{ color: #FFF; text-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute;  top: 700/@r; left: 30/@r;}
-        .cover{ width: 400/@r; height: 400/@r; padding: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.8); position: absolute;  top: 170/@r; left: 30/@r; background: #FFF;
-            img{ display: block; width: 100%;}
+        .songName{ color: #000; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px;}
+        .singername{ color: #666; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
+        .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0;
+            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto;}
+        }
+        .play-hide{ 
+            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
         }
     }
 }
