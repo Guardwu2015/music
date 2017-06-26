@@ -14,9 +14,9 @@
 				<div class="singername" v-if="playID != null">{{ playList[playID].singername }}</div>
 				<div class="play-handle">
 					<div class="progress-wrap">
-						<div class="to">00:00</div>
-						<div class="progress-bar"></div>
-						<div class="from">04:43</div>
+						<div class="to">{{startTime}}</div>
+						<div class="progress-bar"><span :style="width"></span></div>
+						<div class="from">{{endTime}}</div>
 					</div>
 					<div class="prev" v-tap="{methods:prev}">
 						<i class="icon-prev"></i>
@@ -40,13 +40,24 @@
 	  				<img v-if="playID != null" :src="playList[playID].albumpic_small" />
 	  				<img src="../assets/images/logo.png" v-else />
 	  			</dt>
-				<dd class="play-bar-text" v-if="playID != null">{{ playList[playID].songname }}</dd>
-				<dd class="play-bar-text" v-else>随便听听</dd>
+				<dd class="play-bar-text" v-if="playID != null">
+					<p>{{ playList[playID].songname }}</p>
+					<span>{{ playList[playID].singername }}</span>
+				</dd>
+				<dd class="play-bar-text" v-else>
+					随便听听
+				</dd>
 			</dl>
 			<div class="play-bar-button">
-				<div class="icon" v-if="!isplay" v-tap="{methods:play}"><img src="../assets/images/play.png" /></div>
-				<div class="icon" v-if="isplay" v-tap="{methods:pause}"><img src="../assets/images/pause.png" /></div>
-				<div class="icon"><img src="../assets/images/list.png" /></div>
+				<div class="icon" v-if="!isplay" v-tap="{methods:play}">
+					<i class="icon-play"></i>
+				</div>
+				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
+					<i class="icon-pause"></i>
+				</div>
+				<div class="icon">
+					<i class="icon-list"></i>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -56,7 +67,13 @@
 	export default {
 		data() {
 			return {
-				isActive: false
+				isActive: false,
+				endTime:"00:00",
+				startTime:"00:00",
+				progress:"0%",
+				width:{
+					width:"0%"
+				}
 			}
 		},
 		methods: {
@@ -107,23 +124,37 @@
 			this.$refs.audio.onended = function() {
 				_this.$store.commit("nextMusic")
 			};
-
-			this.$nextTick(() => {
-				if(this.$refs.audio.currentTime == 0) {
-					console.log(this.$refs.audio.duration)
-				}
-
-			})
-
-		}, //		mounted(){
-		//			if(this.isplay){
-		//				console.log(this.$refs.audio.duration)
-		//			}
-		//		},
-		//		mounted(){
-		//			console.log("播放")
-		//			console.log(this.$refs.audio)
-		//		}
+			
+			setTimeout(()=>{
+				let t,m,s
+				t = parseInt(_this.$refs.audio.duration);
+				m = "0"+Math.floor(t/60);
+				s = t-Math.floor(t/60)*60;
+				s = s<10?"0"+s:s
+				_this.endTime = m+":"+s;
+			},30)
+			
+			setInterval(()=>{
+				var t,m,s,k
+				t = parseInt(_this.$refs.audio.currentTime);
+				
+				m = Math.floor(t/60);
+				m = m<10?"0"+m:m;
+				s = t-Math.floor(t/60)*60;
+				s = s<10?"0"+s:s
+				
+				_this.startTime = m+":"+s;
+				
+				setTimeout(()=>{
+					let w
+					k = parseInt(_this.$refs.audio.duration);
+					w = (t/k*100).toFixed(2);
+					_this.width.width = w+"%"
+				},30)
+				
+			},1000)
+			
+		},
 	}
 </script>
 

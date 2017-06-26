@@ -3,24 +3,24 @@
 		<loading class="loading" v-if="loading"></loading>
 		<div class="rang-king-list">
 			<ul class="songList">
-			<li v-for="(item,index) in DataList" key="index">
-				<dl>
-					<dt>{{ index+1 }}</dt>
-					<dd>
-						<p>{{ item.songname }}</p>
-						<span>{{ item.singername }}</span>
-					</dd>
-				</dl>
-			</li>
+				<li v-for="(item,index) in DataList" key="index" v-tap="{methods:getSong, index:index}">
+					<dl>
+						<dt>{{ index+1 }}</dt>
+						<dd>
+							<p>{{ item.songname }}</p>
+							<span>{{ item.singername }}</span>
+						</dd>
+					</dl>
+				</li>
 			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
-	import loading from '@/components/loading'
 	import BScroll from 'better-scroll'
-	
+	import loading from '@/components/loading'
+
 	export default {
 		data() {
 			return {
@@ -35,9 +35,9 @@
 			'$route': 'fetchData'
 		},
 		methods: {
-			fetchData(){
+			fetchData() {
 				this.loading = true;
-				
+
 				this.$http.get(this.$site + this.$route.meta.id).then(response => {
 					this.DataList = response.data.showapi_res_body.pagebean.songlist;
 					this.loading = false;
@@ -48,8 +48,14 @@
 					console.log("请求超时")
 				})
 			},
+			getSong(params) {
+				let obj = {}
+				obj.list = this.DataList;
+				obj.id = params.index;
+				this.$store.commit("newPlay",obj)
+			}
 		},
-		components:{
+		components: {
 			loading
 		}
 	}

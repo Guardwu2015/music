@@ -1,33 +1,66 @@
 <template>
-	<div class="loader-wrap">
-		<div class="ball-scale">
-			<div></div>
+	<div class="loading-wrap">
+		<div class="spinner7">
+			<div class="circ1"></div>
+			<div class="circ2"></div>
+			<div class="circ3"></div>
+			<div class="circ4"></div>
 		</div>
 	</div>
 </template>
 
 <style>
-@keyframes ball-scale {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
+	.spinner7 {
+      width: 100%;
+      height: 30px;
+      text-align: center;
+    }
 
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 0; } }
+    .spinner7 > div {
+      background-color: #fc3a6e;
+      height: 15px;
+      width: 15px;
+      margin-left:3px;
+      border-radius: 50%;
+      display: inline-block;
+      
+      -webkit-animation: stretchdelay 0.7s infinite ease-in-out;
+      animation: stretchdelay 0.7s infinite ease-in-out;
+    }
 
-.ball-scale{ position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60px; height: 60px;}
-.ball-scale > div {
-  background-color: #42B983;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-  margin: 2px;
-  animation-fill-mode: both;
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  animation: ball-scale 1s 0s ease-in-out infinite; }
+    .spinner7 .circ2 {
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
+    }
+
+    .spinner7 .circ3 {
+      -webkit-animation-delay: -0.5s;
+      animation-delay: -0.5s;
+    }
+
+    .spinner7 .circ4 {
+      -webkit-animation-delay: -0.4s;
+      animation-delay: -0.4s;
+    }
+
+    .spinner7 .circ5 {
+      -webkit-animation-delay: -0.3s;
+      animation-delay: -0.3s;
+    }
+
+    @-webkit-keyframes stretchdelay {
+      0%, 40%, 100% { -webkit-transform: translateY(-10px) }  
+      20% { -webkit-transform: translateY(-20px) }
+    }
+
+    @keyframes stretchdelay {
+      0%, 40%, 100% { 
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+      } 20% {
+        transform: translateY(-20px);
+        -webkit-transform: translateY(-20px);
+      }
+    }
 
 </style>

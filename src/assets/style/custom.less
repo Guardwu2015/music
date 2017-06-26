@@ -111,9 +111,8 @@ input:focus{ outline: none;}
 .icon-next:before {
   content: "\e906";
 }
-.icon-serch:before {
+.icon-search:before {
   content: "\e907";
-  color: #666;
 }
 
 //封装背景
@@ -125,7 +124,10 @@ input:focus{ outline: none;}
 
 body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
 
-.loading{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.7); z-index: 9;}
+.loading{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.7); z-index: 9;
+        .spinner7{ position: absolute; top: 50%; left: 0; transform: translateY(-50%);}
+}
+
 
 //顶部模块
 .top-bar{
@@ -143,9 +145,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
             input{ width: 100%; background: #2caa6d; height: 70/@r; border-radius: 10/@r; line-height: 70/@r; color: #FFF; text-indent: 1em;
             }
             label{ position: absolute; transform: translate(-50%,-50%); top: 50%; left: 50%; font-size: 28/@r; line-height: 70/@r; margin-top: 2/@r; opacity: 0.5; display:flex; align-items:center; justify-content: center; 
-                &:before{
-                    content: ""; background: url(../images/search.png) no-repeat; background-size: 35/@r 35/@r; width: 35/@r; height: 35/@r; display: block; margin-right: 10/@r;
-                }
+                i{ margin-right: 10/@r;}
             }
             input::-webkit-input-placeholder{
                 color: #000;opacity:1;
@@ -157,7 +157,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
             }
         }
     }
-    .search-mark{ position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5;}
+    .search-mark{ position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5; padding-top: 100/@r;}
 }
 
 .fade-enter-active{
@@ -191,12 +191,12 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
     .play-bar-image{ width: 100/@r; height: 100/@r; padding-right: 20/@r; display: flex; align-items: center;
         img{ display: block; width: 100%; border-radius: 100%; background: #FFF;}
     }
-    .play-bar-text{ font-size: 36/@r;}
-}
-.play-bar-button{ width: 200/@r; display: flex; justify-content: space-between; align-items: center; padding-right:40/@r;
-    .icon{ width: 40/@r; height: 40/@r;
-        img{ display: block; width: 100%;}
+    .play-bar-text{ font-size: 36/@r;
+        span{ font-size: 20/@r;}
     }
+}
+.play-bar-button{ width: 230/@r; display: flex; justify-content: space-between; align-items: center; padding-right: 20/@r;
+    .icon{ width: 80/@r; height: 80/@r; display: flex; justify-content: center; align-items: center;}
 }
 .play-wrap{ position: fixed; width: 100%; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
     &.active{
@@ -219,7 +219,10 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
             .progress-wrap{
                 position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center;
                 .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
-                .progress-bar{ background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px;}
+                .progress-bar{ 
+                    background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px;
+                    span{ display: block; height: 5px; background: #ff1f5b; border-radius: 10px;}
+                }
             }
         }
         .songName{ color: #000; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px;}
