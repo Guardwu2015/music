@@ -18,8 +18,8 @@
 
     .spinner7 > div {
       background-color: #fc3a6e;
-      height: 15px;
-      width: 15px;
+      height: 10px;
+      width: 10px;
       margin-left:3px;
       border-radius: 50%;
       display: inline-block;

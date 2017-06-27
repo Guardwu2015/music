@@ -10,60 +10,70 @@
 				<span :class="{ active: isfocus }" v-tap="{methods:cancel}">取消</span>
 			</div>
 		</div>
-		<transition name="fade">
-			<div class="search-mark" v-if="isfocus">
-				<div v-if="loading">loading...</div>
-				<ul v-if="data">
-					<li v-for="(item,index) in data.contentlist" key="index">
-						<dl>
-							<dt>{{ index+1 }}</dt>
-							<dd>
+		<div class="search-mark" v-if="isfocus">
+			<loading v-if="loading"></loading>
+			<div v-if="data">
+				<p class="allNum">搜索<span>{{ data.w }}</span> 共<span>{{ data.allNum }}</span>条</p>
+				<div ref="selist" class="search-list">
+					<ul>
+						<li v-for="(item,index) in data.contentlist" key="index">
+							<div class="item-text">
 								<p>{{ item.songname }}</p>
-								<span>{{ item.singername }}</span>
-							</dd>
-						</dl>
-					</li>
-				</ul>
+								<span>{{ item.singername }} · {{ item.albumname }}</span>
+							</div>
+							<div class="item-add">
+								<div class="icon">
+									<i class="icon-play"></i>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
-  		</transition>
+		</div>
 	</div>
 </template>
 
 <script>
-	export default{
-		data(){
+	import loading from "@/components/loading"
+	import BScroll from 'better-scroll'
+
+	export default {
+		data() {
 			return {
-				isfocus:false,
-				loading:false,
-				keyword:"",
-				data:null,
+				isfocus: false,
+				loading: false,
+				keyword: "",
+				data: null,
 			}
 		},
-		methods:{
-			inputFocus(){
+		methods: {
+			inputFocus() {
 				this.isfocus = true
 			},
-			cancel(){
+			cancel() {
 				this.isfocus = false
 				this.$refs.search.blur()
 				this.keyword = ""
 				this.data = null
 			},
-			search(){
+			search() {
 				this.loading = true;
-				this.$http.get(this.$querys+"&page=1&keyword="+ this.keyword ).then(response => {
+				this.$http.get(this.$querys + "&page=1&keyword=" + this.keyword).then(response => {
 					this.loading = false;
 					this.$refs.search.blur()
-					this.data=response.data.showapi_res_body.pagebean
+					this.data = response.data.showapi_res_body.pagebean
 					console.log(response.data.showapi_res_body.pagebean)
-//					this.$nextTick(() => {
-//						new BScroll(this.$refs.hotBody, {})
-//					})
+					this.$nextTick(() => {
+						new BScroll(this.$refs.selist, {})
+					})
 				}, response => {
 					console.log("请求超时")
 				})
-				
 			}
+		},
+		components: {
+			loading
 		}
 	}
 </script>

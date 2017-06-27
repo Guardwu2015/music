@@ -134,7 +134,9 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
     position: absolute; top: 0; left: 0; width: 100%; transition: top .3s .2s; 
     &.active{top:-80/@r;}
     .top-wrap{
-        background: #42B983; color: #FFF; height: 180/@r; padding-top: 20/@r; position: relative; z-index: 6;
+        color: #FFF; height: 180/@r; padding-top: 20/@r; position: relative; z-index: 6;
+        @val:30deg,#fc3a6e,#ff5390;
+        .lineBG(@val);
         .top-nav{
             text-align: center; font-size: 28/@r;
             span{ opacity:1;  font-size: 36/@r;}
@@ -142,7 +144,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
         .search-wrap{
             position: absolute; width: 100%; padding: 0 15/@r; left:0; bottom: 15/@r; transition: padding-right .5s; overflow: hidden;
             &.active{ padding-right: 100/@r;}
-            input{ width: 100%; background: #2caa6d; height: 70/@r; border-radius: 10/@r; line-height: 70/@r; color: #FFF; text-indent: 1em;
+            input{ width: 100%; background:rgba(255,255,255,.3); height: 70/@r; border-radius: 10/@r; line-height: 70/@r; color: #FFF; text-indent: 1em;
             }
             label{ position: absolute; transform: translate(-50%,-50%); top: 50%; left: 50%; font-size: 28/@r; line-height: 70/@r; margin-top: 2/@r; opacity: 0.5; display:flex; align-items:center; justify-content: center; 
                 i{ margin-right: 10/@r;}
@@ -157,7 +159,24 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden;}
             }
         }
     }
-    .search-mark{ position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5; padding-top: 100/@r;}
+    .search-mark{
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5; padding-top: 100/@r;
+        .allNum{ 
+            text-align: center; font-size: 30/@r; line-height: 50/@r;
+            span{color: #ff1f5b;}
+        }
+        .search-list{
+            position: absolute; top: 150/@r; left: 0; bottom: 0; right: 0; overflow: hidden;
+            li{
+                border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; padding: 15/@r 30/@r;
+                .item-text{
+                    p{ font-size: 36/@r; line-height: 36/@r; margin-bottom: 10/@r;}
+                    span{ font-size: 26/@r; line-height: 26/@r; display: inherit; color: #999;}
+                }
+            }
+        }
+    }
+    
 }
 
 .fade-enter-active{
