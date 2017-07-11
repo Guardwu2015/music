@@ -33,8 +33,10 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="play-bar" :class="{ active: isActive }">
+		
+		
+		<div id="play-bar" :class="{ active: isActive}">
+			<div class="progress-bar"><span :style="width"></span></div>
 			<dl class="play-bar-container" v-tap="{methods:musicAreaShow}">
 				<dt class="play-bar-image">
 	  				<img v-if="playID != null" :src="playList[playID].albumpic_small" />
@@ -55,7 +57,7 @@
 				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
 					<i class="icon-pause"></i>
 				</div>
-				<div class="icon">
+				<div class="icon" >
 					<i class="icon-list"></i>
 				</div>
 			</div>
@@ -105,6 +107,7 @@
 			prev() {
 				this.$store.commit("prevMusic")
 			},
+			
 		},
 		computed: {
 			playID() {
@@ -135,7 +138,7 @@
 			},30)
 			
 			setInterval(()=>{
-				var t,m,s,k
+				let t,m,s,k
 				t = parseInt(_this.$refs.audio.currentTime);
 				
 				m = Math.floor(t/60);
