@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio"></audio>
+		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio" style="display: none;"></audio>
 
 		<div class="play-wrap" :class="{ active: isActive }">
 			<div class="play-body">
@@ -19,21 +19,20 @@
 						<div class="from">{{endTime}}</div>
 					</div>
 					<div class="prev" v-tap="{methods:prev}">
-						<i class="icon-prev"></i>
+						<i class="icon-audio-prev"></i>
 					</div>
 					<div class="play" v-if="!isplay" v-tap="{methods:play}">
-						<i class="icon-play"></i>
+						<i class="icon-audio-plays"></i>
 					</div>
 					<div class="pause" v-if="isplay" v-tap="{methods:pause}">
-						<i class="icon-pause"></i>
+						<i class="icon-audio-pause"></i>
 					</div>
 					<div class="next" v-tap="{methods:next}">
-						<i class="icon-next"></i>
+						<i class="icon-audio-next"></i>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		
 		<div id="play-bar" :class="{ active: isActive}">
 			<div class="progress-bar"><span :style="width"></span></div>
@@ -52,13 +51,13 @@
 			</dl>
 			<div class="play-bar-button">
 				<div class="icon" v-if="!isplay" v-tap="{methods:play}">
-					<i class="icon-play"></i>
+					<i class="icon-audio-plays"></i>
 				</div>
 				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
-					<i class="icon-pause"></i>
+					<i class="icon-audio-pause"></i>
 				</div>
 				<div class="icon" >
-					<i class="icon-list"></i>
+					<i class="icon-audio-list"></i>
 				</div>
 			</div>
 		</div>

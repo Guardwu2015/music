@@ -2,7 +2,8 @@
 	<div class="top-bar" :class="{ active: isfocus }">
 		<div class="top-wrap">
 			<div class="top-nav">
-				<span>音乐馆</span>
+				<span><i class="icon-list"></i></span>
+				<span><i class="icon-user"></i></span>
 			</div>
 			<div class="search-wrap" :class="{ active: isfocus }">
 				<label for="search-input" v-show="!isfocus"><i class="icon-search"></i> 搜索</label>
@@ -23,7 +24,7 @@
 							</div>
 							<div class="item-add">
 								<div class="icon">
-									<i class="icon-play"></i>
+									<i class="icon-audio-play"></i>
 								</div>
 							</div>
 						</li>

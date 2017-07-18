@@ -1,6 +1,7 @@
 <template>
   <div id="app">
 		<v-header></v-header>
+		<v-banner></v-banner>
 		<v-nav v-on:setDir="routeDir"></v-nav>
 		<transition :name="thisDir">
 			<router-view class="app-body"></router-view>
@@ -13,6 +14,7 @@
 import vHeader from '@/components/header'
 import vNav from '@/components/nav'
 import play from '@/components/playBar'
+import vBanner from '@/components/banner'
 
 export default {
   name: 'app',
@@ -24,7 +26,8 @@ export default {
 	components:{
 		vHeader,
 		vNav,
-		play
+		play,
+		vBanner
 	},
 	methods:{
 		routeDir(data){

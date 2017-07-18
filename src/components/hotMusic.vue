@@ -2,19 +2,21 @@
 	<div ref="hotBody">
 		<loading class="loading" v-if="loading"></loading>
 		<div class="rang-king-list">
-			<banner></banner>
-			<div class="title">
-				<h6>热门歌曲</h6>
-			</div>
 			<ul class="songList">
-				<li v-for="(item,index) in DataList" key="index" v-tap="{methods:getSong, index:index}">
-					<dl>
-						<dt>{{ index+1 }}</dt>
+				<li v-for="(item,index) in DataList" key="index">
+					<dl v-tap="{methods:getSong, index:index}">
+						<dt>
+							<span><i class="icon-audio-play"></i></span>
+							<img :src="item.albumpic_small"/>
+						</dt>
 						<dd>
 							<p>{{ item.songname }}</p>
 							<span>{{ item.singername }}</span>
 						</dd>
 					</dl>
+					<div class="more">
+						<i class="icon-list-more"></i>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -23,9 +25,7 @@
 
 <script>
 	import BScroll from 'better-scroll'
-	import banner from '@/components/banner'
 	import loading from '@/components/loading'
-
 	export default {
 		data() {
 			return {
@@ -61,7 +61,6 @@
 			}
 		},
 		components: {
-			banner,
 			loading
 		}
 	}
