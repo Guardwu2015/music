@@ -24,7 +24,7 @@ const store = new Vuex.Store({
 		},
 		nextMusic(state){
 			state.isplay = true;
-			if(state.playID > state.playList.length){
+			if(state.playID >= state.playList.length-1){
 				state.playID = 0
 			}else{
 				state.playID++
@@ -32,8 +32,9 @@ const store = new Vuex.Store({
 		},
 		prevMusic(state){
 			state.isplay = true;
-			if(state.playID < 0){
-				state.playID = state.playList.length
+			
+			if(state.playID <= 0){
+				state.playID = state.playList.length-1
 			}else{
 				state.playID--
 			}

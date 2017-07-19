@@ -59,10 +59,10 @@
 			</div>
 		</div>
 		
+		<!-- 歌曲播放列表 -->
 		<div class="playSongWrap">
 			<div class="playSongBody">
 				<div></div>
-				
 			</div>
 		</div>
 		
@@ -90,7 +90,7 @@
 				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
 					<i class="icon-audio-pause"></i>
 				</div>
-				<div class="icon" >
+				<div class="icon">
 					<i class="icon-audio-list"></i>
 				</div>
 			</div>
@@ -113,7 +113,8 @@
 					width:null,
 					height:null
 				},
-				flash:false //用于判断切换歌单的时候渐隐
+				flash:false, //用于判断切换歌单的时候渐隐
+				flashTime:300, //歌曲切换背景切换的时间和css值保持
 			}
 		},
 		created(){
@@ -157,18 +158,17 @@
 				setTimeout(()=>{
 					this.$store.commit("nextMusic")
 					this.flash = false
-				},500)
+				},this.flashTime)
 				//定时器设置为500是因为css中的动画刚好是.5s 要动画播放完之后才告诉vuex播放下一首
 			},
-			//播放上一曲；同下一曲功能一样；本来可以封装成一个方法；由于用的vue-tap 方法写的不完善；最新版本已经可以实现传参数了
+			//播放上一曲；同下一曲功能一样；本来可以封装成一个方法；由于用的vue-tap 他的方法写的不完善；最新版本已经可以实现传参数了
 			prev() {
 				this.flash = true
 				setTimeout(()=>{
 					this.$store.commit("prevMusic")
 					this.flash = false
-				},500)
+				},this.flashTime)
 			},
-			
 		},
 		computed: {
 			//从vuex中拿到正在播放的歌曲id 
@@ -193,16 +193,20 @@
 				setTimeout(()=>{
 					this.$store.commit("nextMusic")
 					this.flash = false
-				},500)
+				},this.flashTime)
 			};
 			
 			//拿到歌曲播放的总时间长; 设置定时器用异步
 			setTimeout(()=>{
 				let t,m,s
 				t = parseInt(_this.$refs.audio.duration);
+				//在没有获取歌源的时候歌曲时间会为NaN；增加正判断防止页面布局乱掉
+				if(isNaN(t)){
+					t = 0
+				}
 				m = "0"+Math.floor(t/60);
 				s = t-Math.floor(t/60)*60;
-				s = s<10?"0"+s:s
+				s = s<10?"0"+s:s;
 				_this.endTime = m+":"+s;
 			},30)
 			

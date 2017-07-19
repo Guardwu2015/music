@@ -341,8 +341,16 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     }
 }
 
+//switchBG
 .blurFlash{
-    opacity: 1; transition: all .5s; position: relative; z-index: -1;
-    &.active{opacity: 0; transition: all .5s;}
+    opacity: 1; transition: all .3s; position: relative; z-index: -1;
+    &.active{opacity: 0; transition: all .3s;}
 }
 
+//歌曲播放列表
+.playSongWrap{
+    position: absolute; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in;
+    &.active{
+        visibility: initial; opacity: 1; transition: all .4s ease-out;
+    }
+}
