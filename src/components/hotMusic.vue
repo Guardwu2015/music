@@ -2,7 +2,7 @@
 	<div ref="hotBody">
 		<loading class="loading" v-if="loading"></loading>
 		<div class="rang-king-list">
-			<ul class="songList">
+			<ul class="songList" :class="{active:loading}">
 				<li v-for="(item,index) in DataList" key="index">
 					<dl v-tap="{methods:getSong, index:index}">
 						<dt>

@@ -17,7 +17,7 @@
     }
 
     .spinner7 > div {
-      background-color: #fc3a6e;
+      background-color: #a3a2a4;
       height: 10px;
       width: 10px;
       margin-left:3px;

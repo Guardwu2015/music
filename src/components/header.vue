@@ -11,11 +11,11 @@
 				<span :class="{ active: isfocus }" v-tap="{methods:cancel}">取消</span>
 			</div>
 		</div>
-		<div class="search-mark" v-if="isfocus">
+		<div class="search-mark" :class="{ active: isfocus }">
 			<loading v-if="loading"></loading>
 			<div v-if="data">
 				<p class="allNum">搜索<span>{{ data.w }}</span> 共<span>{{ data.allNum }}</span>条</p>
-				<div ref="selist" class="search-list">
+				<div ref="selist" class="search-list" :class="{ active: data }">
 					<ul>
 						<li v-for="(item,index) in data.contentlist" key="index">
 							<div class="item-text">

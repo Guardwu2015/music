@@ -138,14 +138,13 @@ input:focus{ outline: none;}
 
 body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; background: #1e1f23;}
 
-.loading{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.7); z-index: 9;
+.loading{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 9;
         .spinner7{ position: absolute; top: 50%; left: 0; transform: translateY(-50%);}
 }
 
-
 //顶部模块
 .top-bar{
-    position: absolute; top: 0; left: 0; width: 100%; transition: top .3s .2s; 
+    position: absolute; top: 0; left: 0; width: 100%; transition: top .3s .2s; z-index: 8;
     &.active{top:-80/@r;}
     .top-wrap{
         color: #FFF; height: 180/@r; padding-top: 10/@r; position: relative; z-index: 6;
@@ -175,13 +174,17 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
         }
     }
     .search-mark{
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #eee; z-index: 5; padding-top: 100/@r;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000; z-index: 5; padding-top: 100/@r; visibility: hidden; opacity: 0; transition: all .3s .4s;
+        &.active{ visibility: inherit; opacity: 1; transition: all .3s;}
         .allNum{ 
             text-align: center; font-size: 30/@r; line-height: 50/@r;
             span{color: #ff1f5b;}
         }
         .search-list{
-            position: absolute; top: 150/@r; left: 0; bottom: 0; right: 0; overflow: hidden;
+            position: absolute; top: 150/@r; left: 0; bottom: 0; right: 0; overflow: hidden; 
+            &.active{
+                animation: showTop .3s;
+            }
             li{
                 border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; padding: 15/@r 30/@r;
                 .item-text{
@@ -194,14 +197,9 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     
 }
 
-.fade-enter-active{
- transition: opacity .3s
-}
-.fade-leave-active{
-  transition: opacity .3s .3s
-}
-.fade-enter, .fade-leave-to{
-  opacity: 0
+@keyframes showTop{
+    0% { transform: translateY( 40% ); opacity: 0;}
+    100% {transform: translateY( 0 ); opacity: 1;}
 }
 
 
@@ -240,7 +238,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
         transform: translateY(-100%);
     }
     .play-body{
-        position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #FFF; z-index: 0;
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #1e1f23; z-index: 0;
         .play-handle{
             position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; align-items: center; justify-content: center; display: flex;
             .play,.pause{
@@ -250,10 +248,10 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
                 i{ margin-left: 5/@r;}
             }
             .next,.prev{
-                width: 100/@r; height: 100/@r; border: 1px solid #FFF; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
+                width: 100/@r; height: 100/@r; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
             }
             .progress-wrap{
-                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center;
+                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center; color: #999;
                 .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
                 .progress-bar{
                     background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px;
@@ -261,13 +259,13 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
                 }
             }
         }
-        .songName{ color: #000; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px;}
-        .singername{ color: #666; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
+        .songName{ color: #FFF; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px; text-shadow: 0 0 10/@r rgba(0,0,0,1);}
+        .singername{ color: #eee; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
         .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0;
-            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto;}
+            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto; box-shadow: 0 0 20/@r rgba(0,0,0,1);}
         }
         .play-hide{ 
-            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
+            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: #666;
         }
     }
 }
@@ -308,7 +306,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
         img{ display: block;}
     }
     .swiper-pagination{ bottom: 0; text-align: right; padding-right: 10px;}
-    .my-bullet{ width: 10px; height: 10px; background: #FFF; display: inline-block; margin: 0 3px; border-radius: 100%; opacity: .5;}
+    .my-bullet{ width: 6px; height: 6px; background: #FFF; display: inline-block; margin: 0 3px; border-radius: 100%; opacity: .5;}
     .my-bullet-active{ background: #FC3A6E; opacity: 1;}
 }
 //菜单栏目
@@ -320,7 +318,10 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
 }
 
 //热歌列表
-.songList{
+.songList{ opacity: 1; transition: all 1s ease-in-out;
+    &.active{
+        opacity: 0;
+    }
     li{ margin: 0 40/@r; border-bottom: 1px solid #37383b; display: flex; align-items: center; padding: 20/@r 0;
         .more{ color: #a5a5a7; text-align: center; flex: 1;}
         dl{
