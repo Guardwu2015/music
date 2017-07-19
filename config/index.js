@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     //https://api.douban.com/v2/movie/top250    /v2/movie/top250
     proxyTable: {
-//    '/213-4':{
+//    '/21v2':{
 //      target:'http://route.showapi.com',
 //      changeOrigin:true,
 //      pathRewrite:{

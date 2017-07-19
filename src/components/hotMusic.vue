@@ -42,7 +42,7 @@
 		methods: {
 			fetchData() {
 				this.loading = true;
-
+				
 				this.$http.get(this.$site + this.$route.meta.id).then(response => {
 					this.DataList = response.data.showapi_res_body.pagebean.songlist;
 					this.loading = false;

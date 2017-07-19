@@ -186,9 +186,9 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
                 animation: showTop .3s;
             }
             li{
-                border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; padding: 15/@r 30/@r;
+                border-bottom: 1px solid #37383b; display: flex; justify-content: space-between; padding: 15/@r 30/@r;
                 .item-text{
-                    p{ font-size: 36/@r; line-height: 36/@r; margin-bottom: 10/@r;}
+                    p{ font-size: 36/@r; line-height: 36/@r; margin-bottom: 10/@r; color: #FFF;}
                     span{ font-size: 26/@r; line-height: 26/@r; display: inherit; color: #999;}
                 }
             }
@@ -248,24 +248,24 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
                 i{ margin-left: 5/@r;}
             }
             .next,.prev{
-                width: 100/@r; height: 100/@r; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #d7d7d7;
+                width: 100/@r; height: 100/@r; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #FFF; text-shadow: 0 0 3px rgba(0,0,0,.7);
             }
             .progress-wrap{
-                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center; color: #999;
+                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center; color: #FFF;
                 .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
                 .progress-bar{
-                    background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px;
+                    background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px; overflow: hidden;
                     span{ display: block; height: 5px; background: #ff1f5b; border-radius: 10px;}
                 }
             }
         }
         .songName{ color: #FFF; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px; text-shadow: 0 0 10/@r rgba(0,0,0,1);}
         .singername{ color: #eee; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
-        .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0;
-            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto; box-shadow: 0 0 20/@r rgba(0,0,0,1);}
+        .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0; z-index: 1;  
+            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto; box-shadow: 0 0 20/@r rgba(0,0,0,1);  }
         }
         .play-hide{ 
-            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: #666;
+            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
         }
     }
 }
@@ -339,7 +339,10 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
           }
         }
     }
-    
 }
 
+.blurFlash{
+    opacity: 1; transition: all .5s; position: relative; z-index: -1;
+    &.active{opacity: 0; transition: all .5s;}
+}
 
