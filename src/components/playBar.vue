@@ -60,15 +60,23 @@
 		</div>
 		
 		<!-- 歌曲播放列表 -->
-		<div class="playSongWrap">
+		<div class="playSongWrap" :class="{ active: isLists }">
 			<div class="playSongBody">
-				<div></div>
+				<div>{{ playList.length }}首</div>
+				<div>
+					<ul>
+						<li v-for="item in playList">
+							<p>{{ item.songname }}</p>
+							<span>{{ item.singername }}</span>
+						</li>
+					</ul>
+				</div>
 			</div>
+			<div class="closeSongBody" v-tap="{methods:listHide}"></div>
 		</div>
 		
-		
 		<!-- 底部播放模块 -->
-		<div id="play-bar" :class="{ active: isActive}">
+		<div id="play-bar" :class="{ active: isActive||isLists}">
 			<div class="progress-bar"><span :style="width"></span></div>
 			<dl class="play-bar-container" v-tap="{methods:musicAreaShow}">
 				<dt class="play-bar-image">
@@ -90,7 +98,7 @@
 				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
 					<i class="icon-audio-pause"></i>
 				</div>
-				<div class="icon">
+				<div class="icon" v-tap="{methods:listShow}">
 					<i class="icon-audio-list"></i>
 				</div>
 			</div>
@@ -102,6 +110,7 @@
 	export default {
 		data() {
 			return {
+				isLists:false,
 				isActive: false, //用于判断播放区域是否点开
 				endTime:"00:00", //歌曲结束时间
 				startTime:"00:00", //歌曲播放时间
@@ -169,6 +178,13 @@
 					this.flash = false
 				},this.flashTime)
 			},
+			listShow(){
+				this.isLists = true
+			},
+			listHide(){
+				this.isLists = false
+			}
+			
 		},
 		computed: {
 			//从vuex中拿到正在播放的歌曲id 
@@ -187,50 +203,51 @@
 		updated() {
 			let _this = this
 			
-			//监听歌曲播放完之后播放下一曲
-			this.$refs.audio.onended = ()=>{
-				this.flash = true
+			//加这一层判断是为了当其他数据发生变化的时候;防止audio没有播放歌曲报错
+			if(this.playID != null) {
+				//监听歌曲播放完之后播放下一曲
+				this.$refs.audio.onended = ()=>{
+					this.flash = true
+					setTimeout(()=>{
+						this.$store.commit("nextMusic")
+						this.flash = false
+					},this.flashTime)
+				};
+				
+				//拿到歌曲播放的总时间长; 设置定时器用异步
 				setTimeout(()=>{
-					this.$store.commit("nextMusic")
-					this.flash = false
-				},this.flashTime)
-			};
-			
-			//拿到歌曲播放的总时间长; 设置定时器用异步
-			setTimeout(()=>{
-				let t,m,s
-				t = parseInt(_this.$refs.audio.duration);
-				//在没有获取歌源的时候歌曲时间会为NaN；增加正判断防止页面布局乱掉
-				if(isNaN(t)){
-					t = 0
-				}
-				m = "0"+Math.floor(t/60);
-				s = t-Math.floor(t/60)*60;
-				s = s<10?"0"+s:s;
-				_this.endTime = m+":"+s;
-			},30)
-			
-			//每秒更新进度条以及开始时间
-			setInterval(()=>{
-				let t,m,s,k
-				t = parseInt(_this.$refs.audio.currentTime);
-				
-				m = Math.floor(t/60);
-				m = m<10?"0"+m:m;
-				s = t-Math.floor(t/60)*60;
-				s = s<10?"0"+s:s
-				
-				_this.startTime = m+":"+s;
-				
-				setTimeout(()=>{
-					let w
-					k = parseInt(_this.$refs.audio.duration);
-					w = (t/k*100).toFixed(2);
-					_this.width.width = w+"%"
+					let t,m,s
+					t = parseInt(_this.$refs.audio.duration);
+					//在没有获取歌源的时候歌曲时间会为NaN；增加判断防止页面布局乱掉
+					if(isNaN(t)){
+						t = 0
+					}
+					m = "0"+Math.floor(t/60);
+					s = t-Math.floor(t/60)*60;
+					s = s<10?"0"+s:s;
+					_this.endTime = m+":"+s;
 				},30)
 				
-			},1000)
-			
+				//每秒更新进度条以及开始时间
+				setInterval(()=>{
+					let t,m,s,k
+					t = parseInt(_this.$refs.audio.currentTime);
+					
+					m = Math.floor(t/60);
+					m = m<10?"0"+m:m;
+					s = t-Math.floor(t/60)*60;
+					s = s<10?"0"+s:s
+					
+					_this.startTime = m+":"+s;
+					
+					setTimeout(()=>{
+						let w
+						k = parseInt(_this.$refs.audio.duration);
+						w = (t/k*100).toFixed(2);
+						_this.width.width = w+"%"
+					},30)
+				},1000)
+			}
 		},
 	}
 	
