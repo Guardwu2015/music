@@ -45,6 +45,7 @@ const store = new Vuex.Store({
 		//从正在播放列表播放歌曲
 		lsitPlay(state,iNow){
 			state.playID = iNow;
+			state.isplay = true;
 		},
 		//判断是否有歌曲正在播放
 		isPlay(state){
