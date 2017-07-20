@@ -67,7 +67,19 @@
 					<div  class="playList" ref="playList">
 						<ul>
 							<li v-for="(item,index) in playList" :class="{ active:index == playID }" v-tap="{methods:getSong, index:index}">
-								<p>{{ item.songname }}<span> - {{ item.singername }}</span></p>
+								<div class="playListName">
+									{{ item.songname }}<span> - {{ item.singername }}</span>
+									<div class="movementWrap" v-if="index == playID">
+										<div class="movement">
+									        <span><i></i></span>
+									        <span><i></i></span>
+									        <span><i></i></span>
+									        <span><i></i></span>
+									        <span><i></i></span>
+									        <span><i></i></span>
+									    </div>
+								    </div>
+								</div>
 								<div class="colse"><i class="icon-close"></i></div>
 							</li>
 						</ul>
@@ -190,10 +202,12 @@
 			//弹出正在播放的列表歌曲
 			listShow(){
 				this.isLists = true;
-				this.$nextTick(() => {
-					new BScroll(this.$refs.playList, {})
-				})
-				
+				// 有歌曲存在的时候在初始化滚动条；不然会报错
+				if(this.playList.length > 0){
+					this.$nextTick(() => {
+						new BScroll(this.$refs.playList, {})
+					})					
+				}
 			},
 			//关闭正在播放的列表
 			listHide(){

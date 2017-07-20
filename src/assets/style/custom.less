@@ -372,10 +372,10 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
             ul{padding: 0 40/@r;
                 li{ display: flex; justify-content: space-between; border-bottom: 1px solid #333; color: #fff; font-size: 32/@r;
                 &.active{
-                    p{ color: #FC3A6E;}
+                    .playListName{ color: #FC3A6E;}
                     span{ color: #be355a;}
                 }
-                p{ padding: 20/@r 0;}
+                .playListName{ padding: 20/@r 0;}
                 span{ font-size: 24/@r; color: #999;}
                 .colse{ color: #999;  padding: 20/@r; margin-right: -20/@r;}
                 }
@@ -392,4 +392,46 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     .playListClose{
             height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out; 
     }
+}
+
+
+.movementWrap{
+    display: inline-block;
+    .movement{
+      width: 30/@r; height: 30/@r; display: flex;
+      &.active{
+          span{
+              i{
+                  animation-play-state:paused !important;
+              }
+          }
+      }
+      span { position: relative;   height: 100%; flex: 1;  overflow: hidden; margin-right:1px; 
+        &:nth-of-type(1) i{animation: waves 0.6s linear 0s infinite alternate;}
+        &:nth-of-type(2) i{animation: waves 0.9s linear 0s infinite alternate;}
+        &:nth-of-type(3) i{animation: waves 1s linear 0s infinite alternate;}
+        &:nth-of-type(4) i{animation: waves 0.8s linear 0s infinite alternate;}
+        &:nth-of-type(5) i{animation: waves 0.7s linear 0s infinite alternate;}
+        &:nth-of-type(6) i{animation: waves 0.5s linear 0s infinite alternate;}
+        i{ position: absolute; bottom: 0; display: block; height: 100%; width: 100%;  background: #FC3A6E;}
+      }
+    }
+}
+
+@keyframes waves {
+  10% {
+    height: 20%;
+  }
+  20% {
+    height: 60%;
+  }
+  40% {
+    height: 40%;
+  }
+  50% {
+    height: 100%;
+  }
+  100% {
+    height: 50%;
+  }
 }
