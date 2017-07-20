@@ -42,10 +42,11 @@
 		methods: {
 			fetchData() {
 				this.loading = true;
-				
+				//获取当前id下面歌曲数据
 				this.$http.get(this.$site + this.$route.meta.id).then(response => {
 					this.DataList = response.data.showapi_res_body.pagebean.songlist;
 					this.loading = false;
+					//当获取数据渲染成功后在初始化滚动条
 					this.$nextTick(() => {
 						new BScroll(this.$refs.hotBody, {})
 					})
@@ -54,10 +55,14 @@
 				})
 			},
 			getSong(params) {
-				let obj = {}
-				obj.list = this.DataList;
-				obj.id = params.index;
-				this.$store.commit("newPlay",obj)
+				//建立一个对象
+				let obj = {};
+				//用来存贮点击播放的歌曲
+				obj.list = this.DataList[params.index];
+				//每次点击歌曲都会往playList进行push 所以他的id刚好对应playList的长度
+				obj.id = this.$store.state.playList.length;
+				//将点击播放的歌曲提交到临时播放列表
+				this.$store.commit("newPlay",obj);
 			}
 		},
 		components: {

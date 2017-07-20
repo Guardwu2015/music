@@ -62,16 +62,23 @@
 		<!-- 歌曲播放列表 -->
 		<div class="playSongWrap" :class="{ active: isLists }">
 			<div class="playSongBody">
-				<div>{{ playList.length }}首</div>
-				<div>
-					<ul>
-						<li v-for="item in playList">
-							<p>{{ item.songname }}</p>
-							<span>{{ item.singername }}</span>
-						</li>
-					</ul>
+				<div v-if="playList.length != 0">
+					<div class="playListTitle">播放列表({{ playList.length }})首</div>
+					<div  class="playList" ref="playList">
+						<ul>
+							<li v-for="(item,index) in playList" :class="{ active:index == playID }" v-tap="{methods:getSong, index:index}">
+								<p>{{ item.songname }}<span> - {{ item.singername }}</span></p>
+								<div class="colse"><i class="icon-close"></i></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div v-if="playList.length == 0" class="playListNull">
+					<p><i class="icon-undefined"></i></p>
+					<span>播放列表空空如也</span>
 				</div>
 			</div>
+			<div class="playListClose" v-tap="{methods:listHide}">关闭</div>
 			<div class="closeSongBody" v-tap="{methods:listHide}"></div>
 		</div>
 		
@@ -107,6 +114,8 @@
 </template>
 
 <script>
+	import BScroll from 'better-scroll'
+	
 	export default {
 		data() {
 			return {
@@ -178,11 +187,21 @@
 					this.flash = false
 				},this.flashTime)
 			},
+			//弹出正在播放的列表歌曲
 			listShow(){
-				this.isLists = true
+				this.isLists = true;
+				this.$nextTick(() => {
+					new BScroll(this.$refs.playList, {})
+				})
+				
 			},
+			//关闭正在播放的列表
 			listHide(){
 				this.isLists = false
+			},
+			//从正在播放的列表中点播歌曲
+			getSong(params) {
+				this.$store.commit("lsitPlay",params.index);
 			}
 			
 		},

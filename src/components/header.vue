@@ -18,7 +18,7 @@
 				<div ref="selist" class="search-list" :class="{ active: data }">
 					<ul>
 						<li v-for="(item,index) in data.contentlist" key="index">
-							<div class="item-text">
+							<div class="item-text" v-tap="{methods:getSong, index:index}">
 								<p>{{ item.songname }}</p>
 								<span>{{ item.singername }} · {{ item.albumname }}</span>
 							</div>
@@ -65,13 +65,25 @@
 					this.loading = false;
 					this.$refs.search.blur()
 					this.data = response.data.showapi_res_body.pagebean
-					console.log(response.data.showapi_res_body.pagebean)
 					this.$nextTick(() => {
 						new BScroll(this.$refs.selist, {})
 					})
 				}, response => {
 					console.log("请求超时")
 				})
+			},
+			getSong(params) {
+				console.log(params.index)
+				//建立一个对象
+				let obj = {};
+				//用来存贮点击播放的歌曲
+				obj.list = this.data.contentlist[params.index];
+				//搜索出来的数据和循环出来的数据不一样；把数据改一下；
+				obj.list['url'] = obj.list['m4a'];
+				//每次点击歌曲都会往playList进行push 所以他的id刚好对应playList的长度
+				obj.id = this.$store.state.playList.length;
+				//将点击播放的歌曲提交到临时播放列表
+				this.$store.commit("newPlay",obj);
 			}
 		},
 		components: {
