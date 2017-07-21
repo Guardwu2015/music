@@ -66,8 +66,8 @@
 					<div class="playListTitle">播放列表({{ playList.length }})首</div>
 					<div  class="playList" ref="playList">
 						<ul>
-							<li v-for="(item,index) in playList" :class="{ active:index == playID }" v-tap="{methods:getSong, index:index}">
-								<div class="playListName">
+							<li v-for="(item,index) in playList" :class="{ active:index == playID }">
+								<div class="playListName" v-tap="{methods:getSong, index:index}">
 									{{ item.songname }}<span> - {{ item.singername }}</span>
 									<div class="movementWrap" v-if="index == playID">
 										<div class="movement" :class="{ active :!isplay}">
@@ -80,7 +80,7 @@
 									    </div>
 								    </div>
 								</div>
-								<div class="colse"><i class="icon-close"></i></div>
+								<div class="colse" v-tap="{methods:deleteSong, index:index}"><i class="icon-close"></i></div>
 							</li>
 						</ul>
 					</div>
@@ -211,11 +211,15 @@
 			},
 			//关闭正在播放的列表
 			listHide(){
-				this.isLists = false
+				this.isLists = false;
 			},
 			//从正在播放的列表中点播歌曲
 			getSong(params) {
 				this.$store.commit("lsitPlay",params.index);
+			},
+			//从正在播放的列表中删除歌曲
+			deleteSong(params){
+				this.$store.commit("deleteSong",params.index);
 			}
 			
 		},
@@ -235,11 +239,13 @@
 		},
 		updated() {
 			let _this = this
-			
-			//加这一层判断是为了当其他数据发生变化的时候;防止audio没有播放歌曲报错
+			//加这一层判断是为了当其他数据发生变化的时候;防止audio没有播放歌曲报错;
 			if(this.playID != null) {
+				//把audio存为一个变量可以防治没有歌曲播放的时候；获取他下面的属性值为undfined
+				let audios = this.$refs.audio;
+				
 				//监听歌曲播放完之后播放下一曲
-				this.$refs.audio.onended = ()=>{
+				audios.onended = ()=>{
 					this.flash = true
 					setTimeout(()=>{
 						this.$store.commit("nextMusic")
@@ -250,7 +256,7 @@
 				//拿到歌曲播放的总时间长; 设置定时器用异步
 				setTimeout(()=>{
 					let t,m,s
-					t = parseInt(_this.$refs.audio.duration);
+					t = parseInt(audios.duration);
 					//在没有获取歌源的时候歌曲时间会为NaN；增加判断防止页面布局乱掉
 					if(isNaN(t)){
 						t = 0
@@ -262,10 +268,9 @@
 				},30)
 				
 				//每秒更新进度条以及开始时间
-				setInterval(()=>{
-					let t,m,s,k
-					t = parseInt(_this.$refs.audio.currentTime);
-					
+				setTimeout(()=>{
+					let t,m,s,k;
+					t = parseInt(audios.currentTime);
 					m = Math.floor(t/60);
 					m = m<10?"0"+m:m;
 					s = t-Math.floor(t/60)*60;
@@ -274,13 +279,20 @@
 					_this.startTime = m+":"+s;
 					
 					setTimeout(()=>{
-						let w
-						k = parseInt(_this.$refs.audio.duration);
+						let w;
+						k = parseInt(audios.duration);
 						w = (t/k*100).toFixed(2);
 						_this.width.width = w+"%"
 					},30)
-				},1000)
+				},1000);
+			}else{
+				//如果this.playID 为null 则初始化这些值
+				this.endTime="00:00"; //歌曲结束时间
+				this.startTime="00:00"; //歌曲播放时间
+				this.progress="0%"; //进度条初始
+				this.width.width="0%";
 			}
+			
 		},
 	}
 	

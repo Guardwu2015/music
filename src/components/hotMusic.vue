@@ -127,9 +127,12 @@
 			},
 			//从更多菜单中添加至歌单
 			pushSong(){
-				
-			}
-			
+				let obj = {}
+				obj.list = this.obj;
+				obj.id = this.$store.state.playList.length;
+				this.$store.commit("pushSong",obj);
+				this.listHide()
+			}			
 		},
 		components: {
 			loading

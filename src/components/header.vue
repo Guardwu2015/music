@@ -73,7 +73,6 @@
 				})
 			},
 			getSong(params) {
-				console.log(params.index)
 				//建立一个对象
 				let obj = {};
 				//用来存贮点击播放的歌曲
