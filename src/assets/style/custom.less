@@ -184,8 +184,8 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
         position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000; z-index: 5; padding-top: 100/@r; visibility: hidden; opacity: 0; transition: all .3s .4s;
         &.active{ visibility: inherit; opacity: 1; transition: all .3s;}
         .allNum{ 
-            text-align: center; font-size: 30/@r; line-height: 50/@r;
-            span{color: #ff1f5b;}
+            text-align: center; font-size: 30/@r; line-height: 50/@r; color: #999;
+            span{color: #FC3A6E;}
         }
         .search-list{
             position: absolute; top: 150/@r; left: 0; bottom: 0; right: 0; overflow: hidden; 
@@ -193,11 +193,13 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
                 animation: showTop .3s;
             }
             li{
-                border-bottom: 1px solid #37383b; display: flex; justify-content: space-between; padding: 15/@r 30/@r;
+                border-bottom: 1px solid #37383b; display: flex; justify-content: space-between; margin: 0 30/@r; padding: 15/@r 0;
                 .item-text{
+                    flex: 1;
                     p{ font-size: 36/@r; line-height: 36/@r; margin-bottom: 10/@r; color: #FFF;}
                     span{ font-size: 26/@r; line-height: 26/@r; display: inherit; color: #999;}
                 }
+                .item-add{ color: #999; padding-left: 30/@r;}
             }
         }
     }
@@ -317,7 +319,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
 #nav {
     position:absolute; left:0; top:480/@r; width: 100%;  height: 80/@r;    overflow: hidden;  background: #2a2b30; z-index: 2; font-size: 28/@r; line-height: 80/@r; z-index: 1; box-shadow: 0 0 5px rgba(0,0,0,.3);
     .swiper-slide { padding: 0 50/@r; width:auto; color: #eeefef; text-shadow: 0 0 4px rgba(0,0,0,.8);
-        &.active{ font-weight: bold; color: #f71a43;}
+        &.active{ font-weight: bold; color: #FC3A6E;}
     }
 }
 
@@ -326,12 +328,12 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     &.active{
         opacity: 0;
     }
-    li{ margin: 0 40/@r; border-bottom: 1px solid #37383b; display: flex; align-items: center; padding: 20/@r 0;
-        .more{ color: #a5a5a7; text-align: center; flex: 1;}
+    li{ margin: 0 40/@r; border-bottom: 1px solid #37383b; display: flex; align-items: center;
+        .more{ color: #a5a5a7; text-align: center; flex: 1; height: 120/@r; line-height: 120/@r; padding-left: 30/@r;}
     }
 }
 .songTile{
-  display: flex; flex-basis: calc(100% - 40/@r); overflow: hidden;
+  display: flex; flex-basis: calc(100% - 40/@r); overflow: hidden;  padding: 20/@r 0;
   dt{ display: flex; align-items: center; justify-content: center; color: #999; position: relative; flex: 1;
     span{ position: absolute; display: block; width: 50%; height: 50%; background: rgba(0,0,0,.3); display: flex; justify-content: center; align-items: center; border-radius: 50%;
         i{ font-size: 24/@r !important; font-weight: bold; color: rgba(255,255,255,.8); margin: 5/@r 0 0 5/@r;}

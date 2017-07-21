@@ -143,6 +143,7 @@
 					width:null,
 					height:null
 				},
+				scroll:null,
 				flash:false, //用于判断切换歌单的时候渐隐
 				flashTime:300, //歌曲切换背景切换的时间和css值保持
 			}
@@ -205,7 +206,7 @@
 				// 有歌曲存在的时候在初始化滚动条；不然会报错
 				if(this.playList.length > 0){
 					this.$nextTick(() => {
-						new BScroll(this.$refs.playList, {})
+						this.scroll = new BScroll(this.$refs.playList, {})
 					})					
 				}
 			},
@@ -220,6 +221,7 @@
 			//从正在播放的列表中删除歌曲
 			deleteSong(params){
 				this.$store.commit("deleteSong",params.index);
+				this.scroll.refresh() //当数据更新；重新计算滚动条
 			}
 			
 		},

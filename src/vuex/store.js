@@ -39,6 +39,7 @@ const store = new Vuex.Store({
 			}
 			state.isplay = true;
 		},
+		//添加歌曲至歌单
 		pushSong(state,obj){
 			let playList = state.playList; //获取vuex的播放列表
 			let isList = false; //用于判断点播的歌曲是否存在歌曲列表

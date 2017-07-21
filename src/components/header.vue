@@ -22,10 +22,8 @@
 								<p>{{ item.songname }}</p>
 								<span>{{ item.singername }} · {{ item.albumname }}</span>
 							</div>
-							<div class="item-add">
-								<div class="icon">
-									<i class="icon-audio-play"></i>
-								</div>
+							<div class="item-add" v-tap="{methods:pushSong, index:index}">
+								+
 							</div>
 						</li>
 					</ul>
@@ -83,7 +81,20 @@
 				obj.id = this.$store.state.playList.length;
 				//将点击播放的歌曲提交到临时播放列表
 				this.$store.commit("newPlay",obj);
-			}
+			},
+			//从更多菜单中添加至歌单
+			pushSong(params){
+				//建立一个对象
+				let obj = {};
+				//用来存贮点击播放的歌曲
+				obj.list = this.data.contentlist[params.index];
+				//搜索出来的数据和循环出来的数据不一样；把数据改一下；
+				obj.list['url'] = obj.list['m4a'];
+				//每次点击歌曲都会往playList进行push 所以他的id刚好对应playList的长度
+				obj.id = this.$store.state.playList.length;
+				//将点击播放的歌曲提交到临时播放列表
+				this.$store.commit("pushSong",obj);
+			}	
 		},
 		components: {
 			loading
