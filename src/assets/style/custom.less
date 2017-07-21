@@ -328,22 +328,23 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     }
     li{ margin: 0 40/@r; border-bottom: 1px solid #37383b; display: flex; align-items: center; padding: 20/@r 0;
         .more{ color: #a5a5a7; text-align: center; flex: 1;}
-        dl{
-          display: flex; flex-basis: calc(100% - 40/@r); overflow: hidden;
-          dt{ display: flex; align-items: center; justify-content: center; color: #999; position: relative; flex: 1;
-            span{ position: absolute; display: block; width: 50%; height: 50%; background: rgba(0,0,0,.3); display: flex; justify-content: center; align-items: center; border-radius: 50%;
-                i{ font-size: 24/@r !important; font-weight: bold; color: rgba(255,255,255,.8); margin: 5/@r 0 0 5/@r;}
-            }
-            img{ display: block; max-width: 100%;}          
-          }
-          dd{ padding-left: 30/@r; padding-top: 10/@r; flex-basis: calc(100% - 800/@r); overflow: hidden;
-            p{ font-size: 32/@r; display: block; margin: 0; padding: 0; color: #FFF; overflow: hidden;  white-space: nowrap;  text-overflow: ellipsis; padding-right: 30/@r;
-        -webkit-box-orient: vertical; overflow: hidden;}
-            span{ font-size: 24/@r; color: #999; display: block;margin: 0; padding: 0;}
-          }
-        }
     }
 }
+.songTile{
+  display: flex; flex-basis: calc(100% - 40/@r); overflow: hidden;
+  dt{ display: flex; align-items: center; justify-content: center; color: #999; position: relative; flex: 1;
+    span{ position: absolute; display: block; width: 50%; height: 50%; background: rgba(0,0,0,.3); display: flex; justify-content: center; align-items: center; border-radius: 50%;
+        i{ font-size: 24/@r !important; font-weight: bold; color: rgba(255,255,255,.8); margin: 5/@r 0 0 5/@r;}
+    }
+    img{ display: block; max-width: 100%;}          
+  }
+  dd{ padding-left: 30/@r; padding-top: 10/@r; flex-basis: calc(100% - 800/@r); overflow: hidden;
+    p{ font-size: 32/@r; display: block; margin: 0; padding: 0; color: #FFF; overflow: hidden;  white-space: nowrap;  text-overflow: ellipsis; padding-right: 30/@r;
+-webkit-box-orient: vertical; overflow: hidden;}
+    span{ font-size: 24/@r; color: #999; display: block;margin: 0; padding: 0;}
+  }
+}
+
 
 //switchBG
 .blurFlash{
@@ -394,7 +395,6 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
     }
 }
 
-
 .movementWrap{
     display: inline-block;
     .movement{
@@ -406,7 +406,7 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
               }
           }
       }
-      span { position: relative;   height: 100%; flex: 1;  overflow: hidden; margin-right:1px; 
+      span { position: relative;   height: 100%; flex-basis: 1px;  overflow: hidden; margin-right:1px; 
         &:nth-of-type(1) i{animation: waves 0.6s linear 0s infinite alternate;}
         &:nth-of-type(2) i{animation: waves 0.9s linear 0s infinite alternate;}
         &:nth-of-type(3) i{animation: waves 1s linear 0s infinite alternate;}
@@ -434,4 +434,38 @@ body{ max-width: 640px; min-width: 320px; margin: 0 auto; overflow: hidden; back
   100% {
     height: 50%;
   }
+}
+
+
+
+
+
+//添加至播放列表
+.pushSongWrap{
+    position: fixed; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in;
+    &.active{
+        visibility: initial; opacity: 1; transition: all .4s ease-out;
+        .playSongBody,.playListClose{ transform: translateY(0);}
+        
+    }
+    .closeSongBody{
+        position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: -1;
+    }
+    .playSongBody{
+        transform: translateY(30%); position: absolute; bottom: 90/@r; left: 0; width: 100%; height: 400/@r; background: #2a2b30; transition: all .4s ease-in-out; 
+        .playList{
+            .songTile{
+                padding: 20/@r 40/@r;
+            }
+            ul{
+                li{
+                    border-top: 1px solid #37383b; font-size: 38/@r; color: #ccc; padding: 15/@r 0; margin: 0 40/@r;
+                    i{ color: #FC3A6E; margin-right: 10/@r; margin-top: 10/@r;}
+                }
+            }
+        }
+    }
+    .playListClose{
+            height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out; 
+    }
 }

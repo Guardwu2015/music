@@ -70,7 +70,7 @@
 								<div class="playListName">
 									{{ item.songname }}<span> - {{ item.singername }}</span>
 									<div class="movementWrap" v-if="index == playID">
-										<div class="movement">
+										<div class="movement" :class="{ active :!isplay}">
 									        <span><i></i></span>
 									        <span><i></i></span>
 									        <span><i></i></span>
