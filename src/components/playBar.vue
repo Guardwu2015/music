@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio" style="display: none;"></audio>
+		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio" style="width: 0px; height: 0px; overflow: hidden;"></audio>
 		
 		<!-- 播放歌单区域 -->
 		<div class="play-wrap" :class="{ active: isActive }">

@@ -27,3 +27,7 @@ new Vue({
   components: { App },
 })
 
+document.querySelector('body').addEventListener('touchmove', function (ev) {
+	event.preventDefault();
+});
+
