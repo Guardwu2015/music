@@ -2,6 +2,8 @@
 
 vue + vue-cli + vuex + axios
 
+[体验地址](http://iwebcom.linux2.jiuhost.com)
+
 ## 构建步骤
 
 ``` bash

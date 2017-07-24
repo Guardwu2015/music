@@ -9,7 +9,6 @@ import hktw from '@/components/hktw' //港台
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
 	linkActiveClass: 'active',
 	routes: [{
 			//热歌
