@@ -2,126 +2,138 @@
 	<div class="music-bar">
 		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio" style="width: 0px; height: 0px; overflow: hidden;"></audio>
 
-		<!-- 播放歌单区域 -->
-		<div class="play-wrap" :class="{ active: isActive }">
-			<div class="play-body">
-				<!-- 关闭播放区域按钮 -->
-				<div v-tap="{methods:musicAreaHide}" class="play-hide">
-					<i class="icon-down"></i>
-				</div>
-				<!-- 专辑大图 -->
-				<div class="cover blurFlash" :class="{ active : flash , show:isActive }">
-					<img v-if="playID != null" :src="playList[playID].albumpic_big" />
-				</div>
-				<!-- 歌曲名字 -->
-				<div class="songName" v-if="playID != null">{{ playList[playID].songname }}</div>
-				<!-- 歌手名字 -->
-				<div class="singername" v-if="playID != null">{{ playList[playID].singername }}</div>
-				<!-- 歌曲控制器 -->
-				<div class="play-handle">
-					<!-- 歌曲播放进度条 -->
-					<div class="progress-wrap">
-						<div class="to">{{startTime}}</div>
-						<div class="progress-bar"><span :style="width"></span></div>
-						<div class="from">{{endTime}}</div>
-					</div>
-					<!-- 上一曲 -->
-					<div class="prev" v-tap="{methods:prev}">
-						<i class="icon-audio-prev"></i>
-					</div>
-					<!-- 播放 -->
-					<div class="play" v-if="!isplay" v-tap="{methods:play}">
-						<i class="icon-audio-plays"></i>
-					</div>
-					<!-- 暂停 -->
-					<div class="pause" v-if="isplay" v-tap="{methods:pause}">
-						<i class="icon-audio-pause"></i>
-					</div>
-					<!-- 下一曲 -->
-					<div class="next" v-tap="{methods:next}">
-						<i class="icon-audio-next"></i>
-					</div>
-				</div>
+		<!--&lt;!&ndash; 播放歌单区域 &ndash;&gt;-->
+		<!--<div class="play-wrap" :class="{ active: isActive }">-->
+			<!--<div class="play-body">-->
+				<!--&lt;!&ndash; 关闭播放区域按钮 &ndash;&gt;-->
+				<!--<div v-tap="{methods:musicAreaHide}" class="play-hide">-->
+					<!--<i class="icon-down"></i>-->
+				<!--</div>-->
+				<!--&lt;!&ndash; 专辑大图 &ndash;&gt;-->
+				<!--<div class="cover blurFlash" :class="{ active : flash , show:isActive }">-->
+					<!--<img v-if="playID != null" :src="playList[playID].albumpic_big" />-->
+				<!--</div>-->
+				<!--&lt;!&ndash; 歌曲名字 &ndash;&gt;-->
+				<!--<div class="songName" v-if="playID != null">{{ playList[playID].songname }}</div>-->
+				<!--&lt;!&ndash; 歌手名字 &ndash;&gt;-->
+				<!--<div class="singername" v-if="playID != null">{{ playList[playID].singername }}</div>-->
+				<!--&lt;!&ndash; 歌曲控制器 &ndash;&gt;-->
+				<!--<div class="play-handle">-->
+					<!--&lt;!&ndash; 歌曲播放进度条 &ndash;&gt;-->
+					<!--<div class="progress-wrap">-->
+						<!--<div class="to">{{startTime}}</div>-->
+						<!--<div class="progress-bar"><span :style="width"></span></div>-->
+						<!--<div class="from">{{endTime}}</div>-->
+					<!--</div>-->
+					<!--&lt;!&ndash; 上一曲 &ndash;&gt;-->
+					<!--<div class="prev" v-tap="{methods:prev}">-->
+						<!--<i class="icon-audio-prev"></i>-->
+					<!--</div>-->
+					<!--&lt;!&ndash; 播放 &ndash;&gt;-->
+					<!--<div class="play" v-if="!isplay" v-tap="{methods:play}">-->
+						<!--<i class="icon-audio-plays"></i>-->
+					<!--</div>-->
+					<!--&lt;!&ndash; 暂停 &ndash;&gt;-->
+					<!--<div class="pause" v-if="isplay" v-tap="{methods:pause}">-->
+						<!--<i class="icon-audio-pause"></i>-->
+					<!--</div>-->
+					<!--&lt;!&ndash; 下一曲 &ndash;&gt;-->
+					<!--<div class="next" v-tap="{methods:next}">-->
+						<!--<i class="icon-audio-next"></i>-->
+					<!--</div>-->
+				<!--</div>-->
 
-				<!-- 背景模糊区域 -->
-				<div :style="{ width: img.width + 'px' ,height : img.height + 'px' }" class="blurFlash" :class="{ active : flash }" ref="blurFlash">
-				<svg :width="img.width" :height="img.height" class="banner-svg" id="banner_svg">
-					<defs>
-						<filter id="f">
-							<feImage id="svg_feImage" v-if="playID != null" xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="playList[playID].albumpic_big" x="0" y="0" :width="img.width" :height="img.height" preserveAspectRatio="xMidYMid slice"></feImage>
-							<feGaussianBlur stdDeviation="30"></feGaussianBlur>
-						</filter>
-					</defs>
-					<rect id="svg_rect" x="0" y="0" :width="img.width" :height="img.height" filter="url(#f)"></rect>
-				</svg>
-				</div>
+				<!--&lt;!&ndash; 背景模糊区域 &ndash;&gt;-->
+				<!--<div :style="{ width: img.width + 'px' ,height : img.height + 'px' }" class="blurFlash" :class="{ active : flash }" ref="blurFlash">-->
+				<!--<svg :width="img.width" :height="img.height" class="banner-svg" id="banner_svg">-->
+					<!--<defs>-->
+						<!--<filter id="f">-->
+							<!--<feImage id="svg_feImage" v-if="playID != null" xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="playList[playID].albumpic_big" x="0" y="0" :width="img.width" :height="img.height" preserveAspectRatio="xMidYMid slice"></feImage>-->
+							<!--<feGaussianBlur stdDeviation="30"></feGaussianBlur>-->
+						<!--</filter>-->
+					<!--</defs>-->
+					<!--<rect id="svg_rect" x="0" y="0" :width="img.width" :height="img.height" filter="url(#f)"></rect>-->
+				<!--</svg>-->
+				<!--</div>-->
 
-			</div>
-		</div>
+			<!--</div>-->
+		<!--</div>-->
 
 		<!-- 歌曲播放列表 -->
-		<div class="playSongWrap" :class="{ active: isLists }">
-			<div class="playSongBody">
-				<div v-if="playList.length != 0">
-					<div class="playListTitle">播放列表({{ playList.length }})首</div>
-					<div  class="playList" ref="playList">
-						<ul>
-							<li v-for="(item,index) in playList" :class="{ active:index == playID }">
-								<div class="playListName" v-tap="{methods:getSong, index:index}">
-									{{ item.songname }}<span> - {{ item.singername }}</span>
-									<div class="movementWrap" v-if="index == playID">
-										<div class="movement" :class="{ active :!isplay}">
-									        <span><i></i></span>
-									        <span><i></i></span>
-									        <span><i></i></span>
-									        <span><i></i></span>
-									        <span><i></i></span>
-									        <span><i></i></span>
-									    </div>
-								    </div>
-								</div>
-								<div class="colse" v-tap="{methods:deleteSong, index:index}"><i class="icon-close"></i></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div v-if="playList.length == 0" class="playListNull">
-					<p><i class="icon-undefined"></i></p>
-					<span>播放列表空空如也</span>
-				</div>
-			</div>
-			<div class="playListClose" v-tap="{methods:listHide}">关闭</div>
-			<div class="closeSongBody" v-tap="{methods:listHide}"></div>
-		</div>
+		<!--<div class="playSongWrap" :class="{ active: isLists }">-->
+			<!--<div class="playSongBody">-->
+				<!--<div v-if="playList.length != 0">-->
+					<!--<div class="playListTitle">播放列表({{ playList.length }})首</div>-->
+					<!--<div  class="playList" ref="playList">-->
+						<!--<ul>-->
+							<!--<li v-for="(item,index) in playList" :class="{ active:index == playID }">-->
+								<!--<div class="playListName" v-tap="{methods:getSong, index:index}">-->
+									<!--{{ item.songname }}<span> - {{ item.singername }}</span>-->
+									<!--<div class="movementWrap" v-if="index == playID">-->
+										<!--<div class="movement" :class="{ active :!isplay}">-->
+									        <!--<span><i></i></span>-->
+									        <!--<span><i></i></span>-->
+									        <!--<span><i></i></span>-->
+									        <!--<span><i></i></span>-->
+									        <!--<span><i></i></span>-->
+									        <!--<span><i></i></span>-->
+									    <!--</div>-->
+								    <!--</div>-->
+								<!--</div>-->
+								<!--<div class="colse" v-tap="{methods:deleteSong, index:index}"><i class="icon-close"></i></div>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div v-if="playList.length == 0" class="playListNull">-->
+					<!--<p><i class="icon-undefined"></i></p>-->
+					<!--<span>播放列表空空如也</span>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="playListClose" v-tap="{methods:listHide}">关闭</div>-->
+			<!--<div class="closeSongBody" v-tap="{methods:listHide}"></div>-->
+		<!--</div>-->
 
 		<!-- 底部播放模块 -->
-		<div id="play-bar" :class="{ active: isActive||isLists}">
-			<div class="progress-bar"><span :style="width"></span></div>
-			<dl class="play-bar-container" v-tap="{methods:musicAreaShow}">
-				<dt class="play-bar-image">
-	  				<img v-if="playID != null" :src="playList[playID].albumpic_small" />
-	  				<img src="../assets/images/logo.png" v-else />
-	  			</dt>
-				<dd class="play-bar-text" v-if="playID != null">
-					<p>{{ playList[playID].songname }}</p>
-					<span>{{ playList[playID].singername }}</span>
-				</dd>
-				<dd class="play-bar-text" v-else>
-					随便听听
-				</dd>
-			</dl>
-			<div class="play-bar-button">
-				<div class="icon" v-if="!isplay" v-tap="{methods:play}">
-					<i class="icon-audio-plays"></i>
-				</div>
-				<div class="icon" v-if="isplay" v-tap="{methods:pause}">
-					<i class="icon-audio-pause"></i>
-				</div>
-				<div class="icon" v-tap="{methods:listShow}">
-					<i class="icon-audio-list"></i>
-				</div>
-			</div>
-		</div>
+		<!--<div class="foot-bar" :class="{active:isActive}">-->
+			<!--<dl class="play-bar-container" v-tap="{methods:musicAreaShow}">-->
+				<!--<dt class="play-bar-image">-->
+	  				<!--<img v-if="playID != null" :src="playList[playID].albumpic_small" />-->
+	  				<!--<img src="../assets/images/cover.jpg" v-else />-->
+	  			<!--</dt>-->
+				<!--<dd class="play-bar-text" v-if="playID != null">-->
+					<!--<p>{{ playList[playID].songname }}</p>-->
+				<!--</dd>-->
+				<!--<dd class="play-bar-text" v-else>-->
+					<!--随便听听-->
+				<!--</dd>-->
+			<!--</dl>-->
+
+		<!--</div>-->
+    <div class="cover-image">
+      <img v-if="playID != null" :src="playList[playID].albumpic_small" />
+      <img src="../assets/images/cover.jpg" v-else />
+    </div>
+
+    <div class="min-name" v-if="playID != null">
+      <p>{{ playList[playID].songname }}</p>
+    </div>
+
+    <div class="min-play-pause" v-tap="{methods:next}">
+      <div class="icon" v-if="!isplay" v-tap="{methods:play}">
+        <i class="icon-play"></i>
+      </div>
+      <div class="icon" v-if="isplay" v-tap="{methods:pause}">
+        <i class="icon-pause"></i>
+      </div>
+    </div>
+
+    <div class="min-next">
+      <div class="icon" v-tap="{methods:next}">
+        <i class="icon-next"></i>
+      </div>
+    </div>
+
 	</div>
 </template>
 

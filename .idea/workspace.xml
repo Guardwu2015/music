@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7161b6b-619f-4231-98c2-2893dede63f2" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assets/images/cover.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assets/font.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assets/js/local.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assets/style/init.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assets/style/transition.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/browseView.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/homeView.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/hotView.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/searchView.vue" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/components/banner.vue" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/fonts/icomoon.eot" afterPath="$PROJECT_DIR$/src/assets/fonts/icomoon.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/fonts/icomoon.ttf" afterPath="$PROJECT_DIR$/src/assets/fonts/icomoon.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/fonts/icomoon.woff" afterPath="$PROJECT_DIR$/src/assets/fonts/icomoon.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/fonts/icomoon.svg" afterPath="$PROJECT_DIR$/src/assets/fonts/icomoon.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/style/custom.less" afterPath="$PROJECT_DIR$/src/assets/style/custom.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/index.js" afterPath="$PROJECT_DIR$/src/router/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/playBar.vue" afterPath="$PROJECT_DIR$/src/components/musicBar.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/musicBar.vue" afterPath="$PROJECT_DIR$/src/components/musicBar.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,7 +22,7 @@
           <file leaf-file-name="homeView.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/homeView.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1986">
+                <state relative-caret-position="2202">
                   <caret line="176" column="43" lean-forward="false" selection-start-line="176" selection-start-column="43" selection-end-line="176" selection-end-column="43" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -54,7 +34,7 @@
           <file leaf-file-name="hotMusic.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/hotMusic.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
+                <state relative-caret-position="1440">
                   <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="90" selection-end-column="8" />
                   <folding />
                 </state>
@@ -86,19 +66,11 @@
           <file leaf-file-name="musicBar.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/musicBar.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-702">
-                  <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="custom.less" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/assets/style/custom.less">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="108">
-                  <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-                  <folding />
+                <state relative-caret-position="389">
+                  <caret line="112" column="16" lean-forward="true" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="27" />
+                  <folding>
+                    <element signature="n#style#0;n#audio#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -110,8 +82,8 @@
           <file leaf-file-name="custom.less" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/assets/style/custom.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="234">
-                  <caret line="119" column="1" lean-forward="false" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="9" />
+                <state relative-caret-position="508">
+                  <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -137,6 +109,7 @@
       <find>play-wrap</find>
       <find>lineBG</find>
       <find>play-bar</find>
+      <find>progress-bar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/assets/style/init.less" />
         <option value="$PROJECT_DIR$/src/components/playBar.vue" />
         <option value="$PROJECT_DIR$/src/components/homeView.vue" />
-        <option value="$PROJECT_DIR$/src/components/musicBar.vue" />
         <option value="$PROJECT_DIR$/src/App.vue" />
+        <option value="$PROJECT_DIR$/src/components/musicBar.vue" />
         <option value="$PROJECT_DIR$/src/assets/style/custom.less" />
       </list>
     </option>
@@ -317,12 +290,12 @@
       <option name="presentableId" value="Default" />
       <updated>1502263098536</updated>
       <workItem from="1502263109906" duration="204000" />
-      <workItem from="1504761472107" duration="15457000" />
+      <workItem from="1504761472107" duration="17753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15661000" />
+    <option name="totallyTimeSpent" value="17957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -586,14 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/hotMusic.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="90" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vuex/store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -604,21 +569,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/style/custom.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/homeView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1986">
+        <state relative-caret-position="2202">
           <caret line="176" column="43" lean-forward="false" selection-start-line="176" selection-start-column="43" selection-end-line="176" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/hotMusic.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="90" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -632,8 +597,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/musicBar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-702">
-          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        <state relative-caret-position="389">
+          <caret line="112" column="16" lean-forward="true" selection-start-line="112" selection-start-column="16" selection-end-line="112" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#audio#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/style/custom.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -72,6 +72,7 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
   }
 }
 
+//专辑头部
 .Song-header{
   padding-left: 40/@r;
   dl{
@@ -89,6 +90,7 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
 
 }
 
+//歌曲列表主体
 .Song-body{
   ul{
     li{
@@ -111,31 +113,37 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
 }
 
 
-
+//音乐炫彩区
 .music-bar{
-  position: absolute; width: 100%; bottom: 98/@r; left: 0px; height: 120/@r;
+  position: absolute; width: 100%; bottom: 98/@r; left: 0px; height: 120/@r; background: #f2f3f7;
+
+.min-next{
+  position: absolute; right: 0;  top:0; padding-right: 40/@r; height: 120/@r; line-height: 120/@r;
+}
+.min-play-pause{
+  position: absolute; right: 130/@r;  top:0;  height: 120/@r; line-height: 120/@r; padding:0 20/@r;
+  .icon{ height: 120/@r; width: 100%}
+}
+.min-name{ position: absolute; left: 160/@r; height: 120/@r; line-height: 120/@r; top:0;}
+.cover-image{
+  display: flex; align-items: center; width: 90/@r; position: absolute;
+  left:40/@r; height: 120/@r;  top:0;  img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7);}
+  }
 }
 
+.foot-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;   display: flex; justify-content: space-around; z-index: 7;  overflow: hidden; padding: 0 40/@r; color: #4b4b4b;
 
-#play-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;  background: #2a2b30; display: flex; justify-content: space-around; z-index: 7; box-shadow: 0 0 15/@r rgba(0,0,0,1); overflow: hidden;
-    transition: transform .7s;
-    .progress-bar{ position: absolute; top: 0; left: 120/@r; width: calc(100% - 120/@r); height: 1px;
-        span{ background: #FC3A6E; display: block; height: 1px; transition: width .4s;}
-    }
-    &.active{
-        transform: translateY(100%);
-    }
   .play-bar-container{ display: flex; align-items: center; flex: 1;
-    .play-bar-image{ display: flex; align-items: center; width: 120/@r;
-      img{ display: block; width: 100%; background: #FFF;}
+    .play-bar-image{ display: flex; align-items: center; width: 90/@r;
+      img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7)}
     }
     .play-bar-text{
-      padding-left: 20/@r; color: #FFF; font-size: 36/@r; flex: 1;
-      span{ font-size: 20/@r; color: #999;}
+      padding-left: 30/@r;  font-size: 36/@r; flex: 1;
+      span{ font-size: 20/@r;}
     }
   }
-  .play-bar-button{ width: 230/@r; display: flex; justify-content: space-between; align-items: center; padding-right: 20/@r;
-    .icon{ width: 80/@r; height: 80/@r; display: flex; justify-content: center; align-items: center; color: #FFF;}
+  .play-bar-button{ width: 180/@r; display: flex; justify-content: space-between; align-items: center;
+    .icon{ width: 80/@r; height: 80/@r; display: flex; justify-content: center; align-items: center;}
   }
   .song-list-mark{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.7); z-index: 6;}
 
