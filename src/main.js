@@ -7,6 +7,7 @@ import axios from 'axios'
 import vuex from 'vuex'
 import store from './vuex/store'
 import vueTap from 'v-tap'
+import local from '@/assets/js/local'
 import api from '@/assets/js/api.js'
 import '../static/swiper/swiper.min.css'
 import '@/assets/js/rem'
@@ -14,6 +15,7 @@ import '@/assets/js/rem'
 Vue.use(vuex)
 Vue.use(vueTap);
 Vue.use(api);
+Vue.use(local);
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

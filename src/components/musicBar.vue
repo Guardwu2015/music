@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="music-bar">
 		<audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio" style="width: 0px; height: 0px; overflow: hidden;"></audio>
-		
+
 		<!-- 播放歌单区域 -->
 		<div class="play-wrap" :class="{ active: isActive }">
 			<div class="play-body">
@@ -42,7 +42,7 @@
 						<i class="icon-audio-next"></i>
 					</div>
 				</div>
-				
+
 				<!-- 背景模糊区域 -->
 				<div :style="{ width: img.width + 'px' ,height : img.height + 'px' }" class="blurFlash" :class="{ active : flash }" ref="blurFlash">
 				<svg :width="img.width" :height="img.height" class="banner-svg" id="banner_svg">
@@ -55,10 +55,10 @@
 					<rect id="svg_rect" x="0" y="0" :width="img.width" :height="img.height" filter="url(#f)"></rect>
 				</svg>
 				</div>
-				
+
 			</div>
 		</div>
-		
+
 		<!-- 歌曲播放列表 -->
 		<div class="playSongWrap" :class="{ active: isLists }">
 			<div class="playSongBody">
@@ -93,7 +93,7 @@
 			<div class="playListClose" v-tap="{methods:listHide}">关闭</div>
 			<div class="closeSongBody" v-tap="{methods:listHide}"></div>
 		</div>
-		
+
 		<!-- 底部播放模块 -->
 		<div id="play-bar" :class="{ active: isActive||isLists}">
 			<div class="progress-bar"><span :style="width"></span></div>
@@ -127,7 +127,7 @@
 
 <script>
 	import BScroll from 'better-scroll'
-	
+
 	export default {
 		data() {
 			return {
@@ -184,7 +184,7 @@
 			},
 			//播放下一曲
 			next() {
-				this.flash = true 
+				this.flash = true
 				//点击下一曲播放给flash为true 会添加上class 实现切换歌曲时候的动画效果
 				setTimeout(()=>{
 					this.$store.commit("nextMusic")
@@ -207,7 +207,7 @@
 				if(this.playList.length > 0){
 					this.$nextTick(() => {
 						this.scroll = new BScroll(this.$refs.playList, {})
-					})					
+					})
 				}
 			},
 			//关闭正在播放的列表
@@ -223,10 +223,10 @@
 				this.$store.commit("deleteSong",params.index);
 				this.scroll.refresh() //当数据更新；重新计算滚动条
 			}
-			
+
 		},
 		computed: {
-			//从vuex中拿到正在播放的歌曲id 
+			//从vuex中拿到正在播放的歌曲id
 			playID() {
 				return this.$store.state.playID
 			},
@@ -245,7 +245,7 @@
 			if(this.playID != null) {
 				//把audio存为一个变量可以防治没有歌曲播放的时候；获取他下面的属性值为undfined
 				let audios = this.$refs.audio;
-				
+
 				//监听歌曲播放完之后播放下一曲
 				audios.onended = ()=>{
 					this.flash = true
@@ -254,7 +254,7 @@
 						this.flash = false
 					},this.flashTime)
 				};
-				
+
 				//拿到歌曲播放的总时间长; 设置定时器用异步
 				setTimeout(()=>{
 					let t,m,s
@@ -268,7 +268,7 @@
 					s = s<10?"0"+s:s;
 					_this.endTime = m+":"+s;
 				},30)
-				
+
 				//每秒更新进度条以及开始时间
 				setTimeout(()=>{
 					let t,m,s,k;
@@ -277,9 +277,9 @@
 					m = m<10?"0"+m:m;
 					s = t-Math.floor(t/60)*60;
 					s = s<10?"0"+s:s
-					
+
 					_this.startTime = m+":"+s;
-					
+
 					setTimeout(()=>{
 						let w;
 						k = parseInt(audios.duration);
@@ -294,10 +294,10 @@
 				this.progress="0%"; //进度条初始
 				this.width.width="0%";
 			}
-			
+
 		},
 	}
-	
+
 </script>
 
 <style>
