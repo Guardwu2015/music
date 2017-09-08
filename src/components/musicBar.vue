@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="music-controller" :class="{max:isActive}" ref="MaxMusic">
-  <div class="music-bar" :class="{max:isActive}">
+  <div class="music-bar" :class="{max:isActive}" ref="MusicBar">
     <audio v-if="playList[playID]" :src="playList[playID].url" controls="" autoplay="" ref="audio"
            style="width: 0px; height: 0px; overflow: hidden; opacity: 0"></audio>
 
@@ -249,12 +249,14 @@
         //开启better-scroll
         this.$nextTick(() => {
           this.MusicScroll = new BScroll(this.$refs.MaxMusic, {
+            probeType:2
           });
 
           //监听better-scroll 退出全屏
-          this.MusicScroll.on('touchEnd', ({y}) => {
+          this.MusicScroll.on('scroll', ({y}) => {
             if(parseInt(y)>30){
-              this.MusicAreaHide()
+              this.MusicAreaHide();
+              this.$refs.MusicBar.style="";
             }
           })
 
