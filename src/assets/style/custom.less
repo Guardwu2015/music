@@ -23,26 +23,35 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
 .subTitle{ margin-top: 90/@r; margin-bottom: 20/@r; font-size: 44/@r; }
 
 //滚动
-.home-scroll-wrap{ position: absolute; top: 0; bottom:-40/@r; left: 0; right: 0; }
+.home-scroll-wrap{ position: absolute; top: 0; bottom: -298/@r; left: 0; right: 0 }
 .Song-scroll-wrap{ position: absolute; top: 90/@r; bottom: 0; left: 0; right: 0}
 
 //主体
 #app{
-  display: flex; flex-direction: column; height: 100vh; background: @white;
-  .app-view{ flex: 1; overflow: hidden; position: relative}
-  .nav{
-    height: 98/@r; border-top:1px solid #b2b2b2; display: flex;
-    a{
-      &.active{ color:@mainColor}
-      color: #929292;
-      display: flex; flex-direction: column; align-items: center; width: 25%; height: inherit; justify-content: space-between; padding-bottom:10/@r; padding-top: 10/@r;
-      i{ font-size: 44/@r}
-      span{
-        font-size: 20/@r;
+  position: relative; background: #000;
+  .app-wrap{
+    height: 100vh; background: @white;  position: relative; transition: all ease .3s .2s;
+    &.active{
+      border-radius: 20/@r 20/@r 0 0; overflow: hidden; opacity: .7; transform: scale(.98); margin: 0 10/@r;
+    }
+    .app-view{
+      position: absolute; bottom: 218/@r; top:0; left: 0; right: 0;
+    }
+    .nav-view{
+      height: 98/@r; border-top:1px solid #b2b2b2; display: flex; position: absolute; bottom: 0; left: 0; right: 0; background: @white;
+      a{
+        &.active{ color:@mainColor}
+        color: #929292;
+        display: flex; flex-direction: column; align-items: center; width: 25%; height: inherit; justify-content: space-between; padding-bottom:10/@r; padding-top: 10/@r;
+        i{ font-size: 44/@r}
+        span{
+          font-size: 20/@r;
+        }
       }
     }
   }
 }
+
 
 
 //首页
@@ -94,7 +103,7 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
 .Song-body{
   ul{
     li{
-      padding-left:40/@r;
+      padding-left:40/@r; position: relative;
       dl{
         display: flex; padding: 5/@r 0;
         dt{
@@ -102,211 +111,297 @@ html,body{ max-width: 640px; min-width: 320px; margin: 0 auto; height: 100vh; ov
           img{ width: 100%; border-radius: 10/@r; border: 1px solid @line}
         }
         dd{
-          margin-left: 30/@r; border-bottom: 1px solid @line; flex: 1; display: flex; position: relative;  flex-direction: column; justify-content: center; margin-bottom: -5/@r; padding-right: 120/@r;
+          margin-left: 30/@r; border-bottom: 1px solid @line; flex: 1; display: flex;  flex-direction: column; justify-content: center; margin-bottom: -5/@r; padding-right: 120/@r;
           p{ font-size: 30/@r; overflow : hidden; text-overflow: ellipsis;            display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;}
           span{ font-size: 24/@r; color: @font-md}
-          .add{ position: absolute; top:0; right: 0; height: 100%; color: @mainColor;  padding-right: 50/@r; display: flex; align-items: center}
         }
       }
+      .add{ position: absolute; top:0; right: 0; height: 100%; color: @mainColor;  padding-right: 50/@r; display: flex; align-items: center}
     }
   }
 }
 
 
-//音乐炫彩区
+//音乐模式区
+.music-controller{
+
+  &:before{
+    position: absolute; height: 50%;
+    bottom:0; left: 0; right: 0; background: #FFF; display: block; content: "";
+    transform: translateY(100%);
+  }
+
+  &.max{
+    position: absolute;
+    top:30/@r; bottom: 0; left: 0; right: 0;  border-radius: 20/@r 20/@r 0 0;
+    &:before{
+      transform: translateY(0%);
+    }
+  }
+}
+
 .music-bar{
-  position: absolute; width: 100%; bottom: 98/@r; left: 0px; height: 120/@r; background: #f2f3f7;
+  position: absolute; width: 100%; left: 0px; height: 120/@r; background: #f2f3f7; bottom: 0/@r;
+  animation: ExitFullScreen ease .6s;
+  animation-fill-mode:forwards;
+  //全屏模式
+  &.max{
 
-.min-next{
-  position: absolute; right: 0;  top:0; padding-right: 40/@r; height: 120/@r; line-height: 120/@r;
-}
-.min-play-pause{
-  position: absolute; right: 130/@r;  top:0;  height: 120/@r; line-height: 120/@r; padding:0 20/@r;
-  .icon{ height: 120/@r; width: 100%}
-}
-.min-name{ position: absolute; left: 160/@r; height: 120/@r; line-height: 120/@r; top:0;}
-.cover-image{
-  display: flex; align-items: center; width: 90/@r; position: absolute;
-  left:40/@r; height: 120/@r;  top:0;  img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7);}
-  }
-}
+    animation: EnterFullScreen ease .6s;
+    animation-fill-mode:forwards;
+    background: @white;
 
-.foot-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;   display: flex; justify-content: space-around; z-index: 7;  overflow: hidden; padding: 0 40/@r; color: #4b4b4b;
+    //迷你按钮
+    .min-next,.min-play-pause,.min-name{ opacity: 0; visibility: hidden}
+    //封面
+    .cover-image{
+      animation: EnterCover ease .4s;
+      animation-fill-mode:forwards;
 
-  .play-bar-container{ display: flex; align-items: center; flex: 1;
-    .play-bar-image{ display: flex; align-items: center; width: 90/@r;
-      img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7)}
-    }
-    .play-bar-text{
-      padding-left: 30/@r;  font-size: 36/@r; flex: 1;
-      span{ font-size: 20/@r;}
-    }
-  }
-  .play-bar-button{ width: 180/@r; display: flex; justify-content: space-between; align-items: center;
-    .icon{ width: 80/@r; height: 80/@r; display: flex; justify-content: center; align-items: center;}
-  }
-  .song-list-mark{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.7); z-index: 6;}
-
-}
-
-
-.play-wrap{ position: fixed; width: 100%; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
-    &.active{
-        opacity: 1;
-        transform: translateY(-100%);
-    }
-    .play-body{
-        position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #1e1f23; z-index: 0;
-        .play-handle{
-            position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; align-items: center; justify-content: center; display: flex;
-            .play,.pause{
-                width: 130/@r; height: 130/@r; border-radius: 100%; border: 2px solid #ff1f5b; display: flex; align-items: center; justify-content: center; margin: 0 40/@r; color: #FFF;
-                i{ margin-left: 5/@r;}
-            }
-            .next,.prev{
-                width: 100/@r; height: 100/@r; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #FFF; text-shadow: 0 0 3px rgba(0,0,0,.7);
-            }
-            .progress-wrap{
-                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center; color: #FFF;
-                .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
-                .progress-bar{
-                    background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px; overflow: hidden;
-                    span{ display: block; height: 5px; background: #ff1f5b; border-radius: 10px;}
-                }
-            }
-        }
-        .songName{ color: #FFF; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px; text-shadow: 0 0 10/@r rgba(0,0,0,1);}
-        .singername{ color: #eee; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
-        .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0; z-index: 1;
-            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto; box-shadow: 0 0 20/@r rgba(0,0,0,1);  }
-        }
-        .play-hide{
-            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-        }
-    }
-}
-
-
-
-
-
-//歌曲播放列表
-.playSongWrap{
-    position: absolute; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in; overflow: hidden;
-    &.active{
-        visibility: initial; opacity: 1; transition: all .4s ease-out;
-        .playSongBody,.playListClose{
-            transform: translateY(0);
-        }
-
-    }
-    .closeSongBody{
-        position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: -1;
-    }
-    .playSongBody{
-        transform: translateY(30%); position: absolute; bottom: 90/@r; left: 0; width: 100%; height: 800/@r; background: #2a2b30; transition: all .4s ease-in-out;
-        .playListTitle{ border-bottom: 1px solid #444; font-size: 36/@r; padding: 20/@r 40/@r; color: #eee;}
-        .playList{
-            height: 710/@r; overflow: hidden;
-            ul{padding: 0 40/@r;
-                li{ display: flex; justify-content: space-between; border-bottom: 1px solid #333; color: #fff; font-size: 32/@r;
-                &.active{
-                    .playListName{ color: #FC3A6E;}
-                    span{ color: #be355a;}
-                }
-                .playListName{ padding: 20/@r 0; flex: 1;}
-                span{ font-size: 24/@r; color: #999;}
-                .colse{ color: #999;  padding: 20/@r; margin-right: -20/@r;}
-                }
-            }
-        }
-        .playListNull{
-            height: 710/@r; display: flex; align-items: center; flex-direction: column; justify-content: center;  color: #555;
-            i{
-                font-size: 200/@r;
-            }
-            span{ font-size: 24/@r;}
-        }
-    }
-    .playListClose{
-            height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out;
-    }
-}
-
-.movementWrap{
-    display: inline-block;
-    .movement{
-      width: 30/@r; height: 30/@r; display: flex;
       &.active{
-          span{
-              i{
-                  animation-play-state:paused !important;
-              }
-          }
-      }
-      span { position: relative;   height: 100%; flex-basis: 1px;  overflow: hidden; margin-right:1px;
-        &:nth-of-type(1) i{animation: waves 0.6s linear 0s infinite alternate;}
-        &:nth-of-type(2) i{animation: waves 0.9s linear 0s infinite alternate;}
-        &:nth-of-type(3) i{animation: waves 1s linear 0s infinite alternate;}
-        &:nth-of-type(4) i{animation: waves 0.8s linear 0s infinite alternate;}
-        &:nth-of-type(5) i{animation: waves 0.7s linear 0s infinite alternate;}
-        &:nth-of-type(6) i{animation: waves 0.5s linear 0s infinite alternate;}
-        i{ position: absolute; bottom: 0; display: block; height: 100%; width: 100%;  background: #FC3A6E;}
-      }
-    }
-}
-
-@keyframes waves {
-  10% {
-    height: 20%;
-  }
-  20% {
-    height: 60%;
-  }
-  40% {
-    height: 40%;
-  }
-  50% {
-    height: 100%;
-  }
-  100% {
-    height: 50%;
-  }
-}
-
-
-
-
-
-//添加至播放列表
-.pushSongWrap{
-    position: fixed; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in;
-    &.active{
-        visibility: initial; opacity: 1; transition: all .4s ease-out;
-        .playSongBody,.playListClose{ transform: translateY(0);}
-
-    }
-    .closeSongBody{
-        position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: -1;
-    }
-    .playSongBody{
-        transform: translateY(30%); position: absolute; bottom: 90/@r; left: 0; width: 100%; height: 400/@r; background: #2a2b30; transition: all .4s ease-in-out;
-        .playList{
-            .songTile{
-                padding: 20/@r 40/@r;
-            }
-            ul{
-                li{
-                    border-top: 1px solid #37383b; font-size: 38/@r; color: #ccc; padding: 15/@r 0; margin: 0 40/@r;
-                    i{ color: #FC3A6E; margin-right: 10/@r; margin-top: 10/@r;}
-                }
-            }
+        img{
+          transform: scale(.8)
         }
+      }
+      img{box-shadow: 0 0 20px rgba(0,0,0,.4);
+      }
     }
-    .playListClose{
-            height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out;
+
+    .max-play-body{
+        margin: 0 auto;  opacity: 1; visibility: inherit; padding:700/@r 65/@r 0 65/@r; background-color: @white;
+      //进度条
+      .progress-bar{
+        width: 100%; height:6px; background: #dedede; border-radius: 6px;
+        span{ display: block; position: relative; background-color:#8e8e93; height: 6px; width: 0; border-radius: 6px;
+          i{ position: absolute; width: 12px; height: 12px; display: block; background-color: inherit; right: -3px;  top:-3px; border-radius: 100%}
+        }
+      }
+      //时间状态
+      .progress-time{ display: flex; justify-content: space-between; font-size: 24/@r; color: @font-md; padding: 10/@r 0}
+
+      //控制按钮
+      .music-btn{
+        display: flex; justify-content: space-between; padding: 0 60/@r; font-size: 44/@r; align-items: center; margin-top: 60/@r;
+        .play,.pause{ font-size: 70/@r}
+      }
+
+      //歌曲名字
+      .music-name{
+        text-align: center; margin-top: 20/@r;
+        span{ color: @font-lg; font-size: 32/@r}
+        p{ color: @mainColor; letter-spacing: 8px; padding-left: 8px;font-size: 46/@r;}
+      }
+
+      //关闭
+      .music-close{
+        position: absolute; top:0; left:50%; width: 70/@r; height: 60/@r; transform: translateX(-50%);
+        i{ width: 10/@r; height: 40/@r; background-color: #d1d1d6; display: block; border-radius: 10px; position: absolute; top: 30/@r;
+        &:nth-child(1){ transform-origin: left top; transform:rotate(-60deg)}
+        &:nth-child(2){ transform-origin: right top; transform:rotate(60deg); right: 0}
+        }
+      }
     }
+
+
+  }
+
+
+
+  //迷你模式
+  .max-play-body{
+    opacity: 0; visibility: hidden;
+  }
+  .min-next{
+    position: absolute; right: 0;  top:0; padding-right: 40/@r; height: 120/@r; line-height: 120/@r; transition: ease .4s;
+  }
+  .min-play-pause{
+    position: absolute; right: 130/@r;  top:0;  height: 120/@r; line-height: 120/@r; padding:0 20/@r; transition: ease .4s;
+    .icon{ height: 120/@r; width: 100%}
+  }
+  .min-name{ position: absolute; left: 160/@r; height: 120/@r; line-height: 120/@r; top:0; transition: ease .4s;}
+  .cover-image{
+    align-items: center; width: 90/@r; position: absolute;
+    left:40/@r; height: 120/@r; top:0;  display: flex;
+    img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7); transition: ease .4s;}
+  }
 }
+//
+//.foot-bar{ height: 120/@r; width: 100%;  position: absolute; bottom: 0; left: 0;   display: flex; justify-content: space-around; z-index: 7;  overflow: hidden; padding: 0 40/@r; color: #4b4b4b;
+//
+//  .play-bar-container{ display: flex; align-items: center; flex: 1;
+//    .play-bar-image{ display: flex; align-items: center; width: 90/@r;
+//      img{ display: block; width: 100%; background: #FFF; border-radius: 10/@r; box-shadow: 0 0 5px rgba(0,0,0,.7)}
+//    }
+//    .play-bar-text{
+//      padding-left: 30/@r;  font-size: 36/@r; flex: 1;
+//      span{ font-size: 20/@r;}
+//    }
+//  }
+//  .play-bar-button{ width: 180/@r; display: flex; justify-content: space-between; align-items: center;
+//    .icon{ width: 80/@r; height: 80/@r; display: flex; justify-content: center; align-items: center;}
+//  }
+//  .song-list-mark{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.7); z-index: 6;}
+//
+//}
+//
+//
+//.play-wrap{ position: fixed; width: 100%; z-index: 10; height: 100%; left: 0; top: 100%; transition: all .4s; overflow: hidden; opacity: 0;
+//    &.active{
+//        opacity: 1;
+//        transform: translateY(-100%);
+//    }
+//    .play-body{
+//        position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #1e1f23; z-index: 0;
+//        .play-handle{
+//            position: absolute; bottom: 150/@r; left: 0; height: 300/@r; width: 100%; align-items: center; justify-content: center; display: flex;
+//            .play,.pause{
+//                width: 130/@r; height: 130/@r; border-radius: 100%; border: 2px solid #ff1f5b; display: flex; align-items: center; justify-content: center; margin: 0 40/@r; color: #FFF;
+//                i{ margin-left: 5/@r;}
+//            }
+//            .next,.prev{
+//                width: 100/@r; height: 100/@r; border-radius: 100%; display: flex; align-items: center; justify-content: center; color: #FFF; text-shadow: 0 0 3px rgba(0,0,0,.7);
+//            }
+//            .progress-wrap{
+//                position: absolute; top: -150/@r; width: 100%; padding: 70/@r; display: flex; justify-content: space-between; align-items: center; color: #FFF;
+//                .to,.from{ font-size: 24/@r; margin: 0 20/@r;}
+//                .progress-bar{
+//                    background: #ffc3d5; height: 5px; flex: 1; border-radius: 10px; overflow: hidden;
+//                    span{ display: block; height: 5px; background: #ff1f5b; border-radius: 10px;}
+//                }
+//            }
+//        }
+//        .songName{ color: #FFF; font-weight: 800; letter-spacing: 8px;  position: absolute; top: 640/@r; font-size: 40/@r; text-align: center; width: 100%; padding-left: 8px; text-shadow: 0 0 10/@r rgba(0,0,0,1);}
+//        .singername{ color: #eee; position: absolute;  top: 700/@r;  font-size: 24/@r; text-align: center; width: 100%; }
+//        .cover{ width: 100%; height: 300/@r;  position: absolute;  top: 170/@r; left: 0; z-index: 1;
+//            img{ display: block; width: 400/@r; background: #FFF; padding: 10/@r; margin: 0 auto; box-shadow: 0 0 20/@r rgba(0,0,0,1);  }
+//        }
+//        .play-hide{
+//            position: absolute; top: 20/@r; left: 20/@r; width: 100/@r; height: 100/@r; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+//        }
+//    }
+//}
+
+
+
+
+//
+////歌曲播放列表
+//.playSongWrap{
+//    position: absolute; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in; overflow: hidden;
+//    &.active{
+//        visibility: initial; opacity: 1; transition: all .4s ease-out;
+//        .playSongBody,.playListClose{
+//            transform: translateY(0);
+//        }
+//
+//    }
+//    .closeSongBody{
+//        position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: -1;
+//    }
+//    .playSongBody{
+//        transform: translateY(30%); position: absolute; bottom: 90/@r; left: 0; width: 100%; height: 800/@r; background: #2a2b30; transition: all .4s ease-in-out;
+//        .playListTitle{ border-bottom: 1px solid #444; font-size: 36/@r; padding: 20/@r 40/@r; color: #eee;}
+//        .playList{
+//            height: 710/@r; overflow: hidden;
+//            ul{padding: 0 40/@r;
+//                li{ display: flex; justify-content: space-between; border-bottom: 1px solid #333; color: #fff; font-size: 32/@r;
+//                &.active{
+//                    .playListName{ color: #FC3A6E;}
+//                    span{ color: #be355a;}
+//                }
+//                .playListName{ padding: 20/@r 0; flex: 1;}
+//                span{ font-size: 24/@r; color: #999;}
+//                .colse{ color: #999;  padding: 20/@r; margin-right: -20/@r;}
+//                }
+//            }
+//        }
+//        .playListNull{
+//            height: 710/@r; display: flex; align-items: center; flex-direction: column; justify-content: center;  color: #555;
+//            i{
+//                font-size: 200/@r;
+//            }
+//            span{ font-size: 24/@r;}
+//        }
+//    }
+//    .playListClose{
+//            height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out;
+//    }
+//}
+//
+//.movementWrap{
+//    display: inline-block;
+//    .movement{
+//      width: 30/@r; height: 30/@r; display: flex;
+//      &.active{
+//          span{
+//              i{
+//                  animation-play-state:paused !important;
+//              }
+//          }
+//      }
+//      span { position: relative;   height: 100%; flex-basis: 1px;  overflow: hidden; margin-right:1px;
+//        &:nth-of-type(1) i{animation: waves 0.6s linear 0s infinite alternate;}
+//        &:nth-of-type(2) i{animation: waves 0.9s linear 0s infinite alternate;}
+//        &:nth-of-type(3) i{animation: waves 1s linear 0s infinite alternate;}
+//        &:nth-of-type(4) i{animation: waves 0.8s linear 0s infinite alternate;}
+//        &:nth-of-type(5) i{animation: waves 0.7s linear 0s infinite alternate;}
+//        &:nth-of-type(6) i{animation: waves 0.5s linear 0s infinite alternate;}
+//        i{ position: absolute; bottom: 0; display: block; height: 100%; width: 100%;  background: #FC3A6E;}
+//      }
+//    }
+//}
+//
+//@keyframes waves {
+//  10% {
+//    height: 20%;
+//  }
+//  20% {
+//    height: 60%;
+//  }
+//  40% {
+//    height: 40%;
+//  }
+//  50% {
+//    height: 100%;
+//  }
+//  100% {
+//    height: 50%;
+//  }
+//}
+//
+//
+//
+//
+//
+////添加至播放列表
+//.pushSongWrap{
+//    position: fixed; top: 0; left: 0; background: rgba(0,0,0,.8); height: 100%; width: 100%; z-index: 8; visibility: hidden; opacity: 0; transition: all .4s ease-in;
+//    &.active{
+//        visibility: initial; opacity: 1; transition: all .4s ease-out;
+//        .playSongBody,.playListClose{ transform: translateY(0);}
+//
+//    }
+//    .closeSongBody{
+//        position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: -1;
+//    }
+//    .playSongBody{
+//        transform: translateY(30%); position: absolute; bottom: 90/@r; left: 0; width: 100%; height: 400/@r; background: #2a2b30; transition: all .4s ease-in-out;
+//        .playList{
+//            .songTile{
+//                padding: 20/@r 40/@r;
+//            }
+//            ul{
+//                li{
+//                    border-top: 1px solid #37383b; font-size: 38/@r; color: #ccc; padding: 15/@r 0; margin: 0 40/@r;
+//                    i{ color: #FC3A6E; margin-right: 10/@r; margin-top: 10/@r;}
+//                }
+//            }
+//        }
+//    }
+//    .playListClose{
+//            height: 90/@r; position: absolute; left: 0; width: 100%; bottom: 0; text-align: center; line-height: 90/@r; color: #999; background: #333; box-shadow: 0 0 10px rgba(0,0,0,.6); font-size: 28/@r; transform: translateY(30%); transition: all .4s ease-in-out;
+//    }
+//}
 
 
 

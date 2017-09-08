@@ -46,19 +46,19 @@
                     <dd>全部播放</dd>
                   </dl>
                 </li>
-                <li v-for="(item,index) in SongList.songlist" v-tap="{methods:playSong, index:index}">
-                  <dl class="songTile">
+                <li v-for="(item,index) in SongList.songlist" >
+                  <dl class="songTile" v-tap="{methods:playSong, index:index}">
                     <dt>
                       <img :src="item.albumpic_small"/>
                     </dt>
                     <dd>
                       <p>{{ item.songname }}</p>
                       <span>{{ item.singername }}</span>
-                      <div class="add">
-                        <i class="icon-add"></i>
-                      </div>
                     </dd>
                   </dl>
+                  <div class="add">
+                    <i class="icon-add"></i>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -128,9 +128,8 @@
     },
     methods: {
       //获取歌曲数据
-      getSong(params) {
-        const {name, id} = params;
-        const local = this.$local.fetch(name)
+      getSong({name, id}) {
+        const local = this.$local.fetch(name);
         this.IsSong = true;
         this.name = name;
 
@@ -145,8 +144,7 @@
         this.$http.get(this.$site + id).then(response => {
           this.SongList = response.data.showapi_res_body.pagebean;
           this.$local.save(name,this.SongList);
-          console.log(this.SongList);
-          this.SongScroll()
+          this.SongScroll();
         }, response => {
           console.log("请求超时")
         })
@@ -170,11 +168,11 @@
         })
       },
       //播放歌曲
-      playSong(params){
+      playSong({index}){
           //建立一个对象
           let obj = {};
           //用来存贮点击播放的歌曲
-          obj.list = this.SongList.songlist[params.index];
+          obj.list = this.SongList.songlist[index];
           //每次点击歌曲都会往playList进行push 所以他的id刚好对应playList的长度
           obj.id = this.$store.state.playList.length;
           //将点击播放的歌曲提交到临时播放列表

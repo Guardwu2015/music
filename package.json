@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "better-scroll": "^0.2.4",
+    "better-scroll": "^1.2.6",
     "v-tap": "^3.0.2",
     "vue": "^2.2.6",
     "vue-awesome-swiper": "^2.4.8",

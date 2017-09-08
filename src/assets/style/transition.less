@@ -4,3 +4,53 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
   opacity: 0
 }
+
+@r:50rem;
+
+//全屏模式进入动画
+@keyframes EnterFullScreen {
+  0%{
+    position: initial;
+    height: initial;
+    opacity: 1;
+    border-radius: 20/@r 20/@r 0 0;
+    background: @white;
+    //transform: translateY(120/@r);
+  }
+  50%{
+    opacity: 1;
+  }
+  60%{
+    //transform: translateY(-30/@r);
+  }
+  100% {
+    opacity: 1;
+    position: initial; height: initial; border-radius: 20/@r 20/@r 0 0;
+    //transform: translateY(0);
+  }
+}
+//全屏模式退出动画
+@keyframes ExitFullScreen {
+  0%{
+    height:100% - 120/@r; border-radius: 20/@r 20/@r 0 0; background: @white; bottom:0;
+  }
+  30% {
+    bottom: 98/@r;  height: 120/@r;
+  }
+  100% {
+    bottom: 98/@r;  height: 120/@r; background: #f2f3f7; border-radius: 0;
+  }
+}
+
+//全面进入封面动画
+@keyframes EnterCover {
+  0%{
+    left:40%; top:200/@r;
+  }
+  80% {
+    bottom:initial; top:70/@r; height: 620/@r;
+  }
+  100% {
+    left:66/@r; width: 620/@r; top:70/@r; height: 620/@r; bottom:initial;
+  }
+}
