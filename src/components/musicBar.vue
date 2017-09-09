@@ -144,7 +144,7 @@
     <!--全屏模式组件-->
     <div class="max-play-body">
       <!--关闭-->
-      <div class="music-close" v-tap="{ methods:MusicAreaHide }">
+      <div class="music-close" v-tap="{ methods:MusicAreaHide }" :class="{ active:pullDown }">
         <i></i>
         <i></i>
       </div>
@@ -192,7 +192,10 @@
         </div>
       </div>
 
-      <div style="background: #F00; height: 500px;"></div>
+      <div class="lyrics-row">
+        <div class="subTitle">歌词</div>
+        <div class="lyrics-btn">显示</div>
+      </div>
 
 
     </div>
@@ -208,6 +211,7 @@
   export default {
     data() {
       return {
+        pullDown:false,
         isLists: false,
         isActive: false, //用于判断播放区域是否点开
         endTime: "00:00", //歌曲结束时间
@@ -223,9 +227,7 @@
     methods: {
       //播放
       play() {
-        // 播放之前判断vuex 中playID是否为初始值；如果不等于null；则开始播放
         if (this.playID != null) {
-          // 播放暂停都会向vuex 提交isPlay 改变他的 true flash的变化；用于监听是否有歌曲在播放
           this.$store.commit("isPlay");
           this.$refs.audio.play();
           this.coverClass = false;
@@ -254,10 +256,20 @@
 
           //监听better-scroll 退出全屏
           this.MusicScroll.on('scroll', ({y}) => {
-            if(parseInt(y)>30){
+            if(y>10){
+              this.pullDown = true;
+            }else if(y<10){
+              this.pullDown = false;
+            }
+
+            if(y>=30){
               this.MusicAreaHide();
+              this.pullDown = false;
               this.$refs.MusicBar.style="";
             }
+          });
+          this.MusicScroll.on('touchEnd',({y})=>{
+              this.pullDown = false;
           })
 
         })
