@@ -164,7 +164,9 @@
       //歌曲滚动条
       SongScroll(){
         this.$nextTick(() => {
-          this.scrollBar = new BScroll(this.$refs.SongList, {});
+          this.scrollBar = new BScroll(this.$refs.SongList, {
+            scrollbar:true
+          });
         })
       },
       //播放歌曲
@@ -180,8 +182,11 @@
       }
     },
     mounted() {
+      //首页滚动条
       this.$nextTick(() => {
-        new BScroll(this.$refs.home, {})
+        new BScroll(this.$refs.home, {
+          scrollbar:true
+        })
       })
     }
   }
